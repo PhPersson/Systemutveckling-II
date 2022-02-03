@@ -2,6 +2,8 @@ package hand;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HandCalculationTest {
@@ -15,7 +17,33 @@ class HandCalculationTest {
     }
 
     @Test
-    void checkHighCards() {
+    void checkHighCardsAbove() {
+        //18
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("12,h");
+        aiCards.add("6,s");
+
+        assertEquals(true , new HandCalculation(aiCards).checkHighCards());
+    }
+
+    @Test
+    void checkHighCardsEquals(){
+        //17
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("12,h");
+        aiCards.add("5,s");
+
+        assertEquals(true , new HandCalculation(aiCards).checkHighCards());
+    }
+
+    @Test
+    void checkHighCardsUnder(){
+        //16
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("12,h");
+        aiCards.add("4,s");
+
+        assertEquals(false , new HandCalculation(aiCards).checkHighCards());
     }
 
     @Test
