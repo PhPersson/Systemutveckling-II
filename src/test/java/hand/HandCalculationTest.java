@@ -10,6 +10,30 @@ class HandCalculationTest {
 
     @Test
     void getCardValues() {
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("12,h");
+        aiCards.add("6,s");
+        aiCards.add("2,c");
+        aiCards.add("3,d");
+
+        HandCalculation handCalculation = new HandCalculation(aiCards);
+
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(12);
+        numbers.add(6);
+        numbers.add(2);
+        numbers.add(3);
+
+        ArrayList<String> colors = new ArrayList<>();
+        colors.add("h");
+        colors.add("s");
+        colors.add("c");
+        colors.add("d");
+
+        assertAll(
+                () -> assertEquals(numbers, handCalculation.getCardNbr()),
+                () -> assertEquals(colors, handCalculation.getCardClr())
+        );
     }
 
     @Test
@@ -20,30 +44,30 @@ class HandCalculationTest {
     void checkHighCardsAbove() {
         //18
         ArrayList<String> aiCards = new ArrayList<>();
-        aiCards.add("12,h");
-        aiCards.add("6,s");
+        aiCards.add("12,H");
+        aiCards.add("6,S");
 
-        assertEquals(true , new HandCalculation(aiCards).checkHighCards());
+        assertTrue(new HandCalculation(aiCards).checkHighCards());
     }
 
     @Test
-    void checkHighCardsEquals(){
+    void checkHighCardsEquals() {
         //17
         ArrayList<String> aiCards = new ArrayList<>();
-        aiCards.add("12,h");
-        aiCards.add("5,s");
+        aiCards.add("12,H");
+        aiCards.add("5,S");
 
-        assertEquals(true , new HandCalculation(aiCards).checkHighCards());
+        assertTrue(new HandCalculation(aiCards).checkHighCards());
     }
 
     @Test
-    void checkHighCardsUnder(){
+    void checkHighCardsUnder() {
         //16
         ArrayList<String> aiCards = new ArrayList<>();
         aiCards.add("12,h");
         aiCards.add("4,s");
 
-        assertEquals(false , new HandCalculation(aiCards).checkHighCards());
+        assertFalse(new HandCalculation(aiCards).checkHighCards());
     }
 
     @Test
