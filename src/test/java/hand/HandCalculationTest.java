@@ -41,7 +41,7 @@ class HandCalculationTest {
     }
 
     @Test
-    void checkHighCardsAbove() {
+    void checkHighCardsAboveBoundary() {
         //18
         ArrayList<String> aiCards = new ArrayList<>();
         aiCards.add("12,H");
@@ -51,7 +51,7 @@ class HandCalculationTest {
     }
 
     @Test
-    void checkHighCardsEquals() {
+    void checkHighCardsEqualsBoundary() {
         //17
         ArrayList<String> aiCards = new ArrayList<>();
         aiCards.add("12,H");
@@ -61,7 +61,7 @@ class HandCalculationTest {
     }
 
     @Test
-    void checkHighCardsUnder() {
+    void checkHighCardsUnderBoundary() {
         //16
         ArrayList<String> aiCards = new ArrayList<>();
         aiCards.add("12,h");
@@ -71,11 +71,49 @@ class HandCalculationTest {
     }
 
     @Test
+    void checkHighCardsRlyHighCardsAboveBoundary(){
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("11,H");
+        aiCards.add("11,S");
+
+        assertTrue(new HandCalculation(aiCards).getRlyHighCards());
+    }
+
+    @Test
+    void checkHighCardsRlyHighCardsEqualsBoundary(){
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("10,H");
+        aiCards.add("10,S");
+
+        assertTrue(new HandCalculation(aiCards).getRlyHighCards());
+    }
+
+    @Test
+    void checkHighCardsRlyHighCardsUnderBoundary(){
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("9,H");
+        aiCards.add("9,S");
+
+        assertFalse(new HandCalculation(aiCards).getRlyHighCards());
+    }
+
+    @Test
     void checkSuit() {
+
     }
 
     @Test
     void checkStraight() {
+        ArrayList<String> aiCards = new ArrayList<>();
+        aiCards.add("2,H");
+        aiCards.add("3,S");
+        aiCards.add("4,S");
+        aiCards.add("5,S");
+        aiCards.add("8,S");
+
+        HandCalculation handCalculation = new HandCalculation(aiCards);
+
+        System.out.println(handCalculation.getStraightChance());
     }
 
     @Test

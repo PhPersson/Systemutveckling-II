@@ -49,13 +49,20 @@ public class HandCalculation {
         Help();
     }
 
-
     public ArrayList<Integer> getCardNbr() {
         return cardNbr;
     }
 
     public ArrayList<String> getCardClr() {
         return cardClr;
+    }
+
+    int getStraightChance(){
+        return straightChance;
+    }
+
+    boolean getRlyHighCards() {
+        return rlyhighCards;
     }
 
     /**
@@ -312,20 +319,16 @@ public class HandCalculation {
 
             inStraight = 0;
 
-
             for (int i = 0; i < CurrentCardsArray.length; i++) {
-
                 if (CurrentCardsArray[i] <= CurrentHighestInStraight && !(CurrentCardsArray[i] < CurrentLowestInStraight)) {
-
                     if (i == 0) {                            //kollar om 0 är samma som 1.
-
                         inStraight++;
+
                         if (CurrentCardsArray[i] == 1) {
                             nbrForStraight.add(String.valueOf(CurrentCardsArray[CurrentCardsArray.length - 1]));
                         } else {
                             nbrForStraight.add(String.valueOf(CurrentCardsArray[i]));
                         }
-
                     }
 
                     if (i >= 1) {
@@ -334,7 +337,6 @@ public class HandCalculation {
                             nbrForStraight.add(String.valueOf(CurrentCardsArray[i]));
                         }
                     }
-
                 }
             }
 
@@ -805,7 +807,6 @@ public class HandCalculation {
      */
     public ArrayList<String> toHiglight() {
         return toHighlight;
-
     }
 
     /**
