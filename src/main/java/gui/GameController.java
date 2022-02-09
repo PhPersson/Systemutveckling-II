@@ -521,7 +521,6 @@ public class GameController {
    * Mutes the sound on and off.
    */
   public void soundSetting() {
-
     if (sound.cardFold.getVolume() > 0) {
       sound.cardFold.setVolume(0);
       sound.checkSound.setVolume(0);
@@ -1498,14 +1497,20 @@ public class GameController {
       String[] potOrder = {"Sub-Pot One: ", "Sub-Pot Two: ", "Sub-Pot Three: ", "Sub-Pot Four: ",
           "Sub-Pot Five: ", "Sub-Pot Six: "};
       for (int i = 0; i < collectionOfPots.length; i++) {
-        if (potSplits[i][0] > 0) {
-          collectionOfPots[i].setText(potOrder[i] + "§" + potSplits[i][0]);
-          collectionOfPots[i].setVisible(true);
-          collectionOfPots[i].setLayoutX(10);
-          collectionOfPots[i].setLayoutY(30 * (i + 1) + 70);
-        } else {
-          collectionOfPots[i].setVisible(false);
+        try{
+          if (potSplits[i][0] > 0) {
+            collectionOfPots[i].setText(potOrder[i] + "§" + potSplits[i][0]);
+            collectionOfPots[i].setVisible(true);
+            collectionOfPots[i].setLayoutX(10);
+            collectionOfPots[i].setLayoutY(30 * (i + 1) + 70);
+          } else {
+            collectionOfPots[i].setVisible(false);
+          }
+        } catch (Exception e)
+        {
+
         }
+
       }
       mainPot.setText("Table Pot: §" + tablePot);
       mainPot.setLayoutX(295.0);

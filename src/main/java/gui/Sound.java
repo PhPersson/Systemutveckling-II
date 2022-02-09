@@ -23,6 +23,7 @@ public class Sound {
 	public AudioClip chipMulti = new AudioClip(Sound.class.getResource("/sounds/chipMe.m4a").toString());
 	public AudioClip coinSound = new AudioClip(Sound.class.getResource("/sounds/chingChingChip.m4a").toString());
 	public AudioClip wrongSound = new AudioClip(Sound.class.getResource("/sounds/buttonSoundWrong.mp3").toString());
+	public boolean isPlaying;
 	
 
 	/**
@@ -56,8 +57,23 @@ public class Sound {
 	 * Starts playing the background music.
 	 */
 	public void playBackgroundMusic() {
+		mp.setVolume(0.3);
 		mp.play();
-
+		isPlaying = true;
 	}
 
+	public void pauseMusic()
+	{
+		mp.pause();
+		isPlaying = false;
+	}
+
+	public void resumeMusic()
+	{
+		mp.play();
+	}
+
+	public boolean isPlaying() {
+		return isPlaying;
+	}
 }

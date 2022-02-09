@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Controller for FXML-doc FirstMenu.fxml.
@@ -31,7 +32,7 @@ public class FMController {
 	 * @throws Exception
 	 */
 	public void initialize() throws Exception {
-
+		this.sound = new Sound();
 	}
 
 	/**
@@ -49,9 +50,7 @@ public class FMController {
 	 * @throws Exception
 	 */
 	public void NewGameClicked() throws Exception {
-
 		changeScene.switchScenetoSetting();
-
 	}
 
 	/**
@@ -66,9 +65,18 @@ public class FMController {
 		// System.out.println(fileHandler.loadPot());
 
 		System.out.println("LoadGame");
-		sound = new Sound();
-		sound.playSound("wrong");
+		this.sound.playSound("wrong");
 
 	}
 
+	public void soundSetting(MouseEvent mouseEvent) {
+		System.out.println(sound.isPlaying());
+		if (this.sound.isPlaying()) {
+			this.sound.pauseMusic();
+		}
+		else
+		{
+			this.sound.resumeMusic();
+		}
+	}
 }
