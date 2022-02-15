@@ -138,6 +138,8 @@ public class GameController {
   @FXML
   public ImageView ivSound;
   @FXML
+  public ImageView ivSoundOff;
+  @FXML
   public MenuItem miNewGame;
   @FXML
   public MenuItem miClose;
@@ -212,7 +214,6 @@ public class GameController {
             {labelPlayerFourName, labelPlayerFourPot, labelPlayerFourAction},
             {labelPlayerFiveName, labelPlayerFivePot, labelPlayerFiveAction}};
 
-
     // Placeholders for the AI (based on their position). Shows their
     // cardbacks/no cards or
     // highlighted cards (AI-frame).
@@ -231,6 +232,9 @@ public class GameController {
 
     // Used by method: inactivateAllAiCardGlows and aiAction.
     this.prevPlayerActive = -1;
+
+    this.ivSoundOff.setVisible(false);
+    this.ivSoundOff.setDisable(true);
   }
 
 
@@ -522,6 +526,7 @@ public class GameController {
    */
   public void soundSetting() {
     if (sound.cardFold.getVolume() > 0) {
+      changeSoundIcon(true);
       sound.cardFold.setVolume(0);
       sound.checkSound.setVolume(0);
       sound.chipMulti.setVolume(0);
@@ -532,6 +537,7 @@ public class GameController {
       sound.coinSound.setVolume(0);
       sound.wrongSound.setVolume(0);
     } else if (sound.cardFold.getVolume() == 0) {
+      changeSoundIcon(false);
       sound.cardFold.setVolume(1);
       sound.checkSound.setVolume(1);
       sound.chipMulti.setVolume(1);
@@ -543,8 +549,20 @@ public class GameController {
       sound.wrongSound.setVolume(1);
     }
   }
-
-
+  public void changeSoundIcon(boolean state) {
+    if (state) {
+      ivSound.setVisible(false);
+      ivSound.setDisable(true);
+      ivSoundOff.setVisible(true);
+      ivSoundOff.setDisable(false);
+    }
+    else {
+      ivSoundOff.setVisible(false);
+      ivSoundOff.setDisable(true);
+      ivSound.setVisible(true);
+      ivSound.setDisable(false);
+    }
+  }
   /**
    * Creates a new ruleController.
    * 
