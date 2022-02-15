@@ -68,4 +68,7 @@ public class FMController {
 		this.sound.playSound("wrong");
 
 	}
+
+	public void soundSetting(MouseEvent mouseEvent) {
+	}
 }
