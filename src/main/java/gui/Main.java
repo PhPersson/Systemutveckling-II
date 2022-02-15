@@ -1,7 +1,10 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * Main method to start the program.
@@ -25,7 +28,18 @@ public class Main extends Application {
 		window = primaryStage;
 		window.setTitle("TeachMePoker");
 		window.setResizable(true);
-		window.setOnCloseRequest(e -> closeProgram());
+
+		/**
+		 * Closes the window and exits the program.
+		 */
+
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent t) {
+				Platform.exit();
+				System.exit(0);
+			}
+		});
 
 		window.setScene(cs.firstScene());
 		window.show();
@@ -41,10 +55,4 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	/**
-	 * Closes the window and exits the program.
-	 */
-	public void closeProgram() {
-		window.close();
-	}
 }
