@@ -60,13 +60,7 @@ public class FMController {
 	 * @throws IOException
 	 */
 	public void LoadGameClicked() throws IOException {
-		// fileHandler = new FileHandler();
-		// String pot = fileHandler.loadPot();
-		// System.out.println(fileHandler.loadPot());
-
-		System.out.println("LoadGame");
 		this.sound.playSound("wrong");
-
 	}
 
 	public void soundSetting(MouseEvent mouseEvent) {

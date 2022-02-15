@@ -28,11 +28,11 @@ public class TutorialController {
 	@FXML
 	private ImageView btnNext;
 
-	public int tutorialProgress;
+	private int tutorialProgress;
 	public SettingsController settingsController;
 	public GameController gameController;
 	public Stage window = new Stage();
-	public int gc;
+	private int gc;
 
 	/**
 	 * Creates the tutorial window object, does not show the window.
@@ -103,7 +103,6 @@ public class TutorialController {
 	 */
 	public void placeImg(){
 		this.tutorialProgress = tutorialProgress+1;
-		System.out.println(tutorialProgress);
 		String buttonName = "nästaButton";
 		if(tutorialProgress == 17){
 			buttonName = "spelaButton"; 

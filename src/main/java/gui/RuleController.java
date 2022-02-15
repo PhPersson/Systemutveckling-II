@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class RuleController{
 
-	public Stage window = new Stage();
+	private Stage window = new Stage();
 	
 	/**
 	 * Creates a window and sets the correct FXML as the scene. 

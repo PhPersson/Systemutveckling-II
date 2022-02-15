@@ -27,12 +27,10 @@ public class test {
 		cards.add("2,d");
 		cards.add("9,h");
 		cards.add("8,d");
-//		cards.add("3,h");
 		
 		
 		getCardValues();
 		int straight = turnTwo();
-		System.out.println(straight);
 		
 	}
 	
@@ -64,8 +62,7 @@ public class test {
 
 		
 		int inStraight;
-		
-		System.out.println("Cards - " + cardNbr);
+
 		
 		for (int x = 0; x < tempArray.length; x++) {	
 			
@@ -99,7 +96,6 @@ public class test {
 			if (inStraight > treshold) {
 				treshold = inStraight;
 				currentHighlightForStraight = temphihglightForStraight;
-				System.out.println("sista currentHighlightForStraight - " + currentHighlightForStraight);
 			}
 
 		}

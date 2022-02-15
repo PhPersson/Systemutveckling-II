@@ -84,20 +84,9 @@ public class TestAi {
 //    ai.makeDecision(150);
 //    System.out.println(ai.getDecision());
 
-    System.out.println("\n\n-Test FLOP-");
-    ai.makeDecision(32, flop);
-    System.out.println(ai.getDecision());
-//
-//    System.out.println("\n\n-Test TURN-");
-//    ai.makeDecision(32, cardTurn);
-//    System.out.println(ai.getDecision());
-//
-//    System.out.println("\n\n-Test RIVER-");
-//    ai.makeDecision(32, cardRiver);
-//    System.out.println(ai.getDecision());
 
-//    ai.updateWinner(1032);
-//    System.out.println("\n\nAI-pot - " + ai.aiPot());
+    ai.makeDecision(32, flop);
+
   }
 
 
