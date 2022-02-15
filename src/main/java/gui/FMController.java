@@ -68,15 +68,4 @@ public class FMController {
 		this.sound.playSound("wrong");
 
 	}
-
-	public void soundSetting(MouseEvent mouseEvent) {
-		System.out.println(sound.isPlaying());
-		if (this.sound.isPlaying()) {
-			this.sound.pauseMusic();
-		}
-		else
-		{
-			this.sound.resumeMusic();
-		}
-	}
 }
