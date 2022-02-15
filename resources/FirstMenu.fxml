@@ -13,6 +13,16 @@
             <Image url="@images/menuBackground.png" />
          </image>
       </ImageView>
+      <ImageView id="soundButton.png" fx:id="ivSoundMenu" fitHeight="45.0" fitWidth="45.0" layoutX="1220.0" layoutY="40.0" onMouseReleased="#pauseMusic">
+         <image>
+            <Image url="@images/soundButton.png" />
+         </image>
+      </ImageView>
+      <ImageView id="soundButtonOff.png" fx:id="ivSoundMenuOff" pickOnBounds="true" fitHeight="45.0" fitWidth="45.0" layoutX="1220.0" layoutY="40.0" onMouseReleased="#playMusic">
+         <image>
+            <Image url="@images/soundButtonOff.png" />
+         </image>
+      </ImageView>
       <VBox layoutX="530.0" layoutY="450.0" prefHeight="200.0" prefWidth="300.0">
          <children>
             <ImageView fx:id="ivNewGame" fitHeight="250.0" fitWidth="290.0" onMouseClicked="#NewGameClicked" pickOnBounds="true" preserveRatio="true">
@@ -22,11 +32,6 @@
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
-            </ImageView>
-            <ImageView id="soundButton.png" fx:id="ivSound" fitHeight="80.0" fitWidth="80.0" onMouseReleased="#soundSetting">
-               <image>
-                  <Image url="@images/soundButton.png" />
-               </image>
             </ImageView>
             <ImageView fx:id="ivLoadGame" disable="true" fitHeight="250.0" fitWidth="290.0" onMouseClicked="#LoadGameClicked" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>

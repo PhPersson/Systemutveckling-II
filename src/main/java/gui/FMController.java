@@ -25,6 +25,10 @@ public class FMController {
 	private ImageView ivNewGame;
 	@FXML
 	private ImageView ivLoadGame;
+	@FXML
+	private ImageView ivSoundMenu;
+	@FXML
+	private ImageView ivSoundMenuOff;
 
 	/**
 	 * Generated method for the FXML.
@@ -33,6 +37,8 @@ public class FMController {
 	 */
 	public void initialize() throws Exception {
 		this.sound = new Sound();
+		this.ivSoundMenuOff.setVisible(false);
+		this.ivSoundMenuOff.setDisable(true);
 	}
 
 	/**
@@ -68,7 +74,18 @@ public class FMController {
 		this.sound.playSound("wrong");
 
 	}
-
-	public void soundSetting(MouseEvent mouseEvent) {
+	public void pauseMusic() {
+		sound.pauseMusic();
+		ivSoundMenuOff.setVisible(true);
+		ivSoundMenuOff.setDisable(false);
+		ivSoundMenu.setVisible(false);
+		ivSoundMenu.setDisable(true);
+	}
+	public void playMusic() {
+		sound.playBackgroundMusic();
+		ivSoundMenu.setVisible(true);
+		ivSoundMenu.setDisable(false);
+		ivSoundMenuOff.setVisible(false);
+		ivSoundMenuOff.setDisable(true);
 	}
 }
