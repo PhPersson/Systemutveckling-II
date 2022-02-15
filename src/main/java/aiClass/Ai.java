@@ -15,18 +15,14 @@ import deck.Card;
 public class Ai {
 
   private AiDecide aiDecide;
-  private boolean isSmallBlind = false;
-  private boolean isBigBlind = false;
-  private boolean sameTurn = false;
+  private boolean isSmallBlind, isBigBlind, sameTurn = false;
   private int paidThisTurn = 0;
   private String name;
   private String whatToDo = "";
   private ArrayList<String> aiCards = new ArrayList<String>(); // Lista som lägger till alla kort
                                                                // som kommer in och som skickas till
                                                                // turns.
-  private int aiPot; // AIPOT - KOMMER IN VIA CONTROLLER.
-  private int highCard;
-  private int handStrength;
+  private int aiPot, highCard, handStrength; // AIPOT - KOMMER IN VIA CONTROLLER.
   private int AllInViability = 99;
 
 
@@ -73,13 +69,9 @@ public class Ai {
 
     aiDecide = new AiDecide(aiCards, aiPot, currentBet, paidThisTurn, sameTurn);
     whatToDo = aiDecide.decision();
-    System.out.println("PaidBeforeThisTurn: " + this.paidThisTurn);
     this.paidThisTurn += aiPot - aiDecide.updateAiPot();
     handStrength = aiDecide.gethandStrength();
     aiPot = aiDecide.updateAiPot();
-    System.out.println("PaidThisTurn(including what was paid before): " + this.paidThisTurn);
-    System.out.println("Decision: " + whatToDo);
-    System.out.println("AiPot after round: " + aiPot);
   }
 
 
@@ -100,13 +92,9 @@ public class Ai {
 
     aiDecide = new AiDecide(aiCards, aiPot, currentBet, paidThisTurn, sameTurn);
     whatToDo = aiDecide.decision();
-    System.out.println("PaidBeforeThisTurn: " + this.paidThisTurn);
     this.paidThisTurn += aiPot - aiDecide.updateAiPot();
     aiPot = aiDecide.updateAiPot();
     handStrength = aiDecide.gethandStrength();
-    System.out.println("PaidThisTurn(including what was paid before): " + this.paidThisTurn);
-    System.out.println("Decision: " + whatToDo);
-    System.out.println("AiPot after round: " + aiPot);
   }
 
 
@@ -128,24 +116,16 @@ public class Ai {
     if (aiCards.size() < 7) {
       aiDecide = new AiDecide(aiCards, aiPot, currentBet, paidThisTurn, sameTurn);
       whatToDo = aiDecide.decision();
-      System.out.println("PaidBeforeThisTurn: " + this.paidThisTurn);
       this.paidThisTurn += aiPot - aiDecide.updateAiPot();
       aiPot = aiDecide.updateAiPot();
       handStrength = aiDecide.gethandStrength();
-      System.out.println("PaidThisTurn(including what was paid before): " + this.paidThisTurn);
-      System.out.println("Decision: " + whatToDo);
-      System.out.println("AiPot after round: " + aiPot);
       // IF its the last turn this is called.
     } else if (aiCards.size() == 7) {
       aiDecide = new AiDecide(aiCards, aiPot, currentBet, paidThisTurn, sameTurn);
       whatToDo = aiDecide.decision();
-      System.out.println("PaidBeforeThisTurn: " + this.paidThisTurn);
       this.paidThisTurn += aiPot - aiDecide.updateAiPot();
       aiPot = aiDecide.updateAiPot();
       handStrength = aiDecide.gethandStrength();
-      System.out.println("PaidThisTurn(including what was paid before): " + this.paidThisTurn);
-      System.out.println("Decision: " + whatToDo);
-      System.out.println("AiPot after round: " + aiPot);
     }
 
   }
@@ -155,7 +135,7 @@ public class Ai {
    * Makes sure that AI-players decision from last this isnt making a problem for current turns
    * decision.
    * 
-   * @param resets whatToDo.
+   * @param reset whatToDo.
    */
   public void setDecision(String reset) {
 
@@ -217,10 +197,6 @@ public class Ai {
   public void setBigBlind(int bigBlind, boolean b) {
 
     this.isBigBlind = b;
-    if (bigBlind > 0) {
-      System.out.println("AI " + name + " paid the big Blind (" + bigBlind + ")");
-    }
-
     aiPot -= bigBlind;
     this.paidThisTurn += bigBlind;
   }
@@ -235,10 +211,6 @@ public class Ai {
   public void setSmallBlind(int smallBlind, boolean b) {
 
     this.isSmallBlind = b;
-    if (smallBlind > 0) {
-      System.out.println("AI " + name + " paid the small Blind (" + smallBlind + ")");
-    }
-
     aiPot -= smallBlind;
     this.paidThisTurn += smallBlind;
   }
@@ -341,8 +313,6 @@ public class Ai {
 
     if (allInViability < AllInViability) {
       AllInViability = allInViability;
-    } else {
-      System.out.println("AI was already viable");
     }
   }
 

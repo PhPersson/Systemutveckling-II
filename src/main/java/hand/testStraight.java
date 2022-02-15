@@ -33,10 +33,6 @@ public class testStraight {
 		getCardValues();
 		int straight = testMethod();
 		finalHihglight = getToHighlight();
-		System.out.println("aiCards -  " + aiCards);
-		System.out.println("cardNbr -  " + cardNbr);
-		System.out.println("Straight -  " + straight);
-		System.out.println("finalHihglight -  " + finalHihglight);
 
 	}
 

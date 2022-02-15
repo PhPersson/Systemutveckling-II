@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  */
 public class WinnerBox {
 
-	public boolean answer = false;
+	private boolean answer = false;
 	public Stage window = new Stage();
 	public Font font = new Font("Tw Cen MT", 18);
 	private ImageView back = new ImageView(Paths.get("resources/images/background.png").toUri().toString());

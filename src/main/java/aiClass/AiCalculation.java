@@ -31,8 +31,6 @@ public class AiCalculation {
 		checkSuit();
 		checkPairAndMore();
 		checkStraight();
-		System.out.println(aiCards);
-		System.out.println(calcHandstrenght());
 	}
 	
 	/**

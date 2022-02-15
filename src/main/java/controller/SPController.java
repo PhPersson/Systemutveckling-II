@@ -20,32 +20,16 @@ public class SPController extends Thread {
 
   private Deck deck;
   private LinkedList<Ai> aiPlayers = new LinkedList<Ai>();
-  private int noOfAi;
-  private int playTurn = 0;
-  private int dealer = 0;
-  private int currentPlayer = 0;
-  private int bigBlindPlayer;
-  private int smallBlindPlayer;
-  private int smallBlind;
+  private int noOfAi, bigBlindPlayer, smallBlindPlayer, smallBlind, potSize, currentPotSize, currentMaxBet, blindCounter, fixedNrOfAIs;
+  private int playTurn, dealer, currentPlayer, noOfPlayers, psCounter = 0;
   private int bigBlind = 10;
-  private int potSize;
-  private int currentPotSize;
-  private int currentMaxBet;
-  private int blindCounter;
-  private Card card1;
-  private Card card2;
-  private Card turn;
-  private Card river;
+  private Card card1, card2, turn, river;
   private Card[] flop = new Card[3];
-  private int noOfPlayers = 0;
-  private boolean allCalledorFolded = false;
-  private boolean winnerDeclared = false;
+  private boolean allCalledorFolded, winnerDeclared, doAllInCheck  = false;
   private ArrayList<String> name = new ArrayList<String>();
   private GameController gController;
-  private int fixedNrOfAIs;
   private int[][] potSplits;
-  private boolean doAllInCheck;
-  private int psCounter = 0;
+
 
 
   /**
@@ -165,7 +149,6 @@ public class SPController extends Thread {
        * Reset the AI players unless they've lost
        */
       for (Ai ai : aiPlayers) {
-        System.out.println(ai.getName() + " : " + ai.getDecision() + (ai.aiPot() < bigBlind));
         ai.setBigBlind(0, false);
         ai.setSmallBlind(0, false);
         ai.setPaidThisTurn(0);
@@ -322,7 +305,6 @@ public class SPController extends Thread {
         ai.updateWinner(-ai.aiPot());
         gController.setUIAiStatus(aiPlayers.indexOf(ai), "inactive");
       }
-      System.out.println(ai.getName() + " : " + ai.getDecision() + (ai.aiPot() < bigBlind));
 
     }
 

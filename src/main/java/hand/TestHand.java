@@ -78,8 +78,6 @@ public class TestHand {
 //      }
 
       hand = new Hand(cards);
-      System.out.print(hand.getHandStrenght());
-    
 //    }
 		
 

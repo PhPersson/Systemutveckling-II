@@ -16,8 +16,7 @@ public class Hand {
 	private ArrayList<String> toHighlight = new ArrayList<String>();
 	private String helper;
 	private String advice;
-	private int pwrBar;
-	private int handStrenght;
+	private int pwrBar, handStrenght;
 
 	/**
 	 * Constructor
@@ -32,16 +31,6 @@ public class Hand {
 		advice = calc.advice();
 		pwrBar = calc.calcPwrBarLvl();
 		toHighlight = calc.toHiglight();
-
-		System.out.println(" -NEW HAND- ");
-		System.out.println(aiCards);
-		System.out.println("Helper - " + helper);
-		System.out.println("");
-		System.out.println("Advice - " + advice);
-		System.out.println("");
-		System.out.println("pwrBar - " + pwrBar);
-		System.out.println("toHighlight - " + toHighlight);
-		System.out.println("");
 
 	}
 

@@ -155,7 +155,6 @@ public class SettingsController {
 
 
 			if (cbOn.isSelected()) {
-				System.out.println("Tutorial ska visas");
 				Platform.runLater(() -> {
 
 				try {
@@ -225,7 +224,6 @@ public class SettingsController {
 				e.printStackTrace();
 			}
 		});
-		System.out.println("Spel startas!");
 	}
 	
 	/**
