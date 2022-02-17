@@ -103,7 +103,7 @@ public class TutorialController {
 	 */
 	public void placeImg(){
 		this.tutorialProgress = tutorialProgress+1;
-		String buttonName = "nästaButton";
+		String buttonName = "nastaButton";
 		if(tutorialProgress == 17){
 			buttonName = "spelaButton"; 
 		}
