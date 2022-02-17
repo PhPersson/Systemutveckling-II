@@ -24,6 +24,16 @@
             <Image url="@images/startGameBackground.png" />
          </image>
       </ImageView>
+      <ImageView id="soundButton.png" fx:id="ivSoundSetting" fitHeight="45.0" fitWidth="45.0" layoutX="1220.0" layoutY="40.0" onMouseReleased="#pauseMusic">
+         <image>
+            <Image url="@images/soundButton.png" />
+         </image>
+      </ImageView>
+      <ImageView id="soundButtonOff.png" fx:id="ivSoundSettingOff" pickOnBounds="true" fitHeight="45.0" fitWidth="45.0" layoutX="1220.0" layoutY="40.0" onMouseReleased="#playMusic">
+         <image>
+            <Image url="@images/soundButtonOff.png" />
+         </image>
+      </ImageView>
       <VBox alignment="TOP_RIGHT" layoutX="740.0" layoutY="70.0" prefHeight="452.0" prefWidth="472.0">
          <children>
             <TextField fx:id="tfNameInput" onAction="#tfNameInputChange" prefHeight="98.0" prefWidth="472.0" promptText="Skriv ditt namn här...">

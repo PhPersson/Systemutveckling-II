@@ -54,6 +54,10 @@ public class SettingsController {
 	private Label lblTutorialInfo;
 	@FXML
 	private ImageView ivBack;
+	@FXML
+	public ImageView ivSoundSetting;
+	@FXML
+	public ImageView ivSoundSettingOff;
 
 	@FXML
 	private ImageView imgTutorial;
@@ -73,6 +77,8 @@ public class SettingsController {
 		potSlider.setSnapToTicks(true);
 		potSlider.setValue(5000);
 		aiSlider.setSnapToTicks(true);
+		this.ivSoundSettingOff.setVisible(false);
+		this.ivSoundSettingOff.setDisable(true);
 
 	}
 
@@ -276,5 +282,19 @@ public class SettingsController {
 	 */
 	public String getName() {
 		return name;
+	}
+	public void pauseMusic() {
+		sound.pauseMusic();
+		ivSoundSettingOff.setVisible(true);
+		ivSoundSettingOff.setDisable(false);
+		ivSoundSetting.setVisible(false);
+		ivSoundSetting.setDisable(true);
+	}
+	public void playMusic() {
+		sound.playBackgroundMusic();
+		ivSoundSetting.setVisible(true);
+		ivSoundSetting.setDisable(false);
+		ivSoundSettingOff.setVisible(false);
+		ivSoundSettingOff.setDisable(true);
 	}
 }
