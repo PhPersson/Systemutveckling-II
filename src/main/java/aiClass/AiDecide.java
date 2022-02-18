@@ -13,7 +13,7 @@ import java.util.Random;
 public class AiDecide {
 
     private AiCalculation calculation;
-    private int colorChance, toBet, straightChance, aiPot, raiseAmount, turn, handStrenght, alreadyPaid;
+    private int colorChance, toBet, straightChance, aiPot, raiseAmount, turn, handStrength, alreadyPaid;
     private int likelyhood, raiseBet, howMuchToTakeAwayFromAiPot = 0;
     private boolean highCards, rlyhighCards, sameTurn;
     private String toDo = "fold";
@@ -44,7 +44,7 @@ public class AiDecide {
         highCards = calculation.checkHighCards();
         colorChance = calculation.checkSuit();
         straightChance = calculation.checkStraight();
-        handStrenght = calculation.calcHandstrenght();
+        handStrength = calculation.calcHandstrenght();
         turn = aiCards.size() - 1;
 
 
@@ -108,7 +108,7 @@ public class AiDecide {
             howMuchToTakeAwayFromAiPot = toBet;
         }
 
-        if (handStrenght == 1) {
+        if (handStrength == 1) {
 
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
@@ -177,7 +177,7 @@ public class AiDecide {
             howMuchToTakeAwayFromAiPot = toBet;
         }
 
-        if (handStrenght >= 1) {
+        if (handStrength >= 1) {
 
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
@@ -246,7 +246,7 @@ public class AiDecide {
             howMuchToTakeAwayFromAiPot = toBet;
         }
 
-        if (handStrenght > 1) {
+        if (handStrength > 1) {
 
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
@@ -308,7 +308,7 @@ public class AiDecide {
             howMuchToTakeAwayFromAiPot = toBet;
         }
 
-        if (handStrenght > 1) {
+        if (handStrength > 1) {
 
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
@@ -338,7 +338,7 @@ public class AiDecide {
      */
     public int gethandStrength() {
 
-        return handStrenght;
+        return handStrength;
     }
 
     /**

@@ -91,7 +91,7 @@ public class Hand {
  * @return returns the current handstrength
  */
 	public int getHandStrenght() {
-		handStrenght = calc.calcHandstrenght();
+		handStrenght = calc.calcHandStrength();
 		return handStrenght;
 	}
 }

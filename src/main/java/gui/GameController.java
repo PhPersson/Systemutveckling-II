@@ -433,7 +433,7 @@ public class GameController {
       } else {
         updatePlayerValues("Raise, §" + raisedBet);
         this.alreadyPaid += raisedBet;
-
+        slider.setValue(0); //Resettar slidern efter du har lagt din raise.
         /*
          * Already paid + (raised amount + the amount the player has to match(if the player has to
          * match)) = WHAT THE PLAYER HAS ALREADY PAID

@@ -27,9 +27,9 @@ public class HandCalculation {
 	private String otherCard ="1,1";
 	private String theColor;
 	private ArrayList<String> toHighlight = new ArrayList<String>();
-	private String advicee;
+	private String newAdvice;
 	private String whatStraight;
-	private int handStrenght = 0;
+	private int HandStrength = 0;
 	/**
 	 * 
 	 * @param aiCards Current cards needed for evaluate.
@@ -634,7 +634,7 @@ public class HandCalculation {
 								+ " Kör på!\n";
 					 }	
 				}
-				// writes the active cards to hihglight
+				// writes the active cards to highlight
 				if(straightChance<5 && colorChance<5){
 				toHighlight.clear();
 				for(int i = 0; i<aiCards.size(); i++){			
@@ -669,22 +669,7 @@ public class HandCalculation {
 			}
 		}
 		
-		//THREE OF A KIND	
-		if(pairsNmore==3){			
-			helper = "'THREE OF A KIND' i " + yourCardInt;			
-			advice = "'THREE OF A KIND' är en väldigt stark hand. Kör på! Fundera även på att höja!\n";
-			// writes the active cards to hihglight
-			if(straightChance<5 && colorChance<5){
-			toHighlight.clear();
-			for(int i = 0; i<aiCards.size(); i++){			
-				String[] seeIfSame = aiCards.get(i).split(",");
-				int temp = Integer.parseInt(seeIfSame[0]);
-				if(intCardNbr==temp){
-					toHighlight.add(aiCards.get(i));
-					}
-				}
-			}
-		}
+
 
 		
 		//STRAIGHT
@@ -708,7 +693,7 @@ public class HandCalculation {
 	
 			
 		
-		//FULL HOUSE			
+		//FULL HOUSE
 		if(pairsNmore == 23 || pairsNmore==32){		
 			helper = "'FULL HOUSE' med " + cardOne + " och " + cardTwo +"!!";   
 			advice = "Det är inte mycket som slår denna hand! Höja är rekomenderat!\n";
@@ -731,7 +716,7 @@ public class HandCalculation {
 		//FOUR OF A KIND	
 				if(pairsNmore==4 || pairsNmore==42 || pairsNmore==24){	
 					helper = "'FOUR OF A KIND' i " + yourCardInt;			
-					advice = "'FOUR OF A KIND' är en av de bästa händerna. Kör på! Fundera även på att höja!\n";
+					advice = "'FOUR OF A KIND' är en av de bästa händerna. \nKör på! Fundera även på att höja!";
 					// writes the active cards to hihglight
 					if(straightChance<5 && colorChance<5){
 					toHighlight.clear();
@@ -750,6 +735,23 @@ public class HandCalculation {
 			helper = "'STRAIGHT FLUSH' i färgen " + theColor + "! ";   //ev add what straight it is ex 2-6.
 			advice = "'STRAIGHT FLUSH' är bästa handen i spelet. Kör på och höj!\n";
 			// Highlightning happens in checkStraight and checkSuit.
+		}
+
+		//THREE OF A KIND
+		if(pairsNmore==3){
+			helper = "'THREE OF A KIND' i " + yourCardInt;
+			advice = "'THREE OF A KIND' är en väldigt stark hand. \nKör på! Fundera även på att höja!";
+			// writes the active cards to hihglight
+			if(straightChance<5 && colorChance<5){
+				toHighlight.clear();
+				for(int i = 0; i<aiCards.size(); i++){
+					String[] seeIfSame = aiCards.get(i).split(",");
+					int temp = Integer.parseInt(seeIfSame[0]);
+					if(intCardNbr==temp){
+						toHighlight.add(aiCards.get(i));
+					}
+				}
+			}
 		}
 		
 		//STRAIGHTCHANCE TEXT AND COLORCHANCE TEXT
@@ -779,7 +781,7 @@ public class HandCalculation {
 			}
 		}
 
-		advicee = advice;
+		newAdvice = advice;
 		return helper;
 		
 	}
@@ -789,7 +791,7 @@ public class HandCalculation {
 	 * @return what advice to give the user
 	 */
 	public String advice(){
-		return advicee;
+		return newAdvice;
 	}
 	
 	/**
@@ -803,33 +805,33 @@ public class HandCalculation {
 	 * sets and returns the current handStrength of the users cards.
 	 * @return sets and returns the current handStrength of the users cards.
 	 */
-	public int calcHandstrenght(){
+	public int calcHandStrength(){
 		
 		if(pairsNmore==2){     //Pair
-			handStrenght=1;	
+			HandStrength =1;
 		}
 		if(pairsNmore==22){	 //Two pair
-			handStrenght=2;
+			HandStrength =2;
 		}
 		if(pairsNmore==3){	 //Three of a kind
-			handStrenght=3;
+			HandStrength =3;
 		}
 		if(straightChance==5){	//Straight
-			handStrenght=4;
+			HandStrength =4;
 		}
 		if(colorChance==5){		//Flush
-			handStrenght=5;
+			HandStrength =5;
 		}
 		if(pairsNmore==23 || pairsNmore==32){	//Full house
-			handStrenght=6;
+			HandStrength =6;
 		}
 		if(pairsNmore == 4 || pairsNmore == 42 || pairsNmore ==24){	//Four of a kind
-			handStrenght = 7;
+			HandStrength = 7;
 		}
 		if(colorChance==5&& straightChance==5){		//Straight flush
-			handStrenght = 8;
+			HandStrength = 8;
 		}
 	
-		return handStrenght;
+		return HandStrength;
 	}
 }
