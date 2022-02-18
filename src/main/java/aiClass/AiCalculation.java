@@ -15,7 +15,7 @@ public class AiCalculation {
 	private ArrayList<String> aiCards = new ArrayList<String>();
 	private ArrayList<Integer> cardNbr = new ArrayList<Integer>();
 	private ArrayList<String> cardClr = new ArrayList<String>();
-	private int handStrenght = 0;
+	private int handStrength = 0;
 	private int same = 1;
 	private boolean flush = false;
 	private boolean straight = false;
@@ -243,31 +243,31 @@ public class AiCalculation {
 	public int calcHandstrenght(){
 		
 		if(same==2){
-			handStrenght=1;	
+			handStrength =1;
 		}
 		if(same==22){
-			handStrenght=2;
+			handStrength =2;
 		}
 		if(same==3){
-			handStrenght=3;
+			handStrength =3;
 		}
 		if(straight){
-			handStrenght=4;
+			handStrength =4;
 		}
 		if(flush){
-			handStrenght=5;
+			handStrength =5;
 		}
 		if(same==23 || same==32){
-			handStrenght=6;
+			handStrength =6;
 		}
 		if(same == 4 || same == 42 || same ==24){
-			handStrenght = 7;
+			handStrength = 7;
 		}
 		if(flush && straight){
-			handStrenght = 8;
+			handStrength = 8;
 		}
 	
-		return handStrenght;
+		return handStrength;
 	}
 
 }
