@@ -1,9 +1,13 @@
-För att köra vårt program i eclipse, gör följande:
+# TeachMePoker
 
-Se till att ni har Java 1.8 installerat då vi använder javaFX
+TeachMePoker är en applikation skriven i Java och använder sig av frameworket JavaFX.
 
-Skapa ett nytt projekt, se till att projektet står i UTF-8 och lägg in våra src filer i src mappen för projektet.
-Skapa en ny source-mapp i eclipse och döp den till resources.
-Kopiera in våra två undermappar images och sounds i resourcemappen.
+Syftet med applikationen är att lära användaren grunderna i poker. 
 
-Leta upp paketet GUI och kör main klassen.
+
+## Starta programmet
+Just nu går det enbart att köra programmet i en utvecklingsmiljö. 
+Ladda ner programmet här från [Github](https://github.com/PhPersson/Systemutveckling-II/archive/refs/heads/main.zip), ladda sedan in programmet i valfri utvecklingsmiljo (Eclipse/IntelliJ)
+
+
+Leta upp klassen GUIStarter och kör dess Main. 
