@@ -1,6 +1,11 @@
 package gui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+
 import controller.SPController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -77,9 +82,6 @@ public class SettingsController {
 		potSlider.setSnapToTicks(true);
 		potSlider.setValue(5000);
 		aiSlider.setSnapToTicks(true);
-		this.ivSoundSettingOff.setVisible(false);
-		this.ivSoundSettingOff.setDisable(true);
-
 	}
 
 	/**
@@ -221,7 +223,9 @@ public class SettingsController {
 				if (cfBox.display("Snart börjar spelet", "Är du redo att spela poker?")) {
 					spController.startGame(aiValue, potValue, name);
 					Sound.mp.stop();
-					sound.playSound("shuffle");
+					if(Double.parseDouble(readFile()) > 0.0){
+						sound.playSound("shuffle");
+					}
 				} else {
 					changeScene.switchToMainMenu();
 				}
@@ -283,7 +287,10 @@ public class SettingsController {
 	public String getName() {
 		return name;
 	}
+
 	public void pauseMusic() {
+		writeVolume(0.0);
+		Sound.mp.setVolume(Double.parseDouble(readFile()));
 		sound.pauseMusic();
 		ivSoundSettingOff.setVisible(true);
 		ivSoundSettingOff.setDisable(false);
@@ -291,10 +298,39 @@ public class SettingsController {
 		ivSoundSetting.setDisable(true);
 	}
 	public void playMusic() {
+		writeVolume(0.2);
+		Sound.mp.setVolume(Double.parseDouble(readFile()));
 		sound.playBackgroundMusic();
 		ivSoundSetting.setVisible(true);
 		ivSoundSetting.setDisable(false);
 		ivSoundSettingOff.setVisible(false);
 		ivSoundSettingOff.setDisable(true);
+	}
+
+	public void writeVolume(double volume){
+		try {
+			FileWriter myWriter = new FileWriter("resources/sounds/volume.txt");
+			myWriter.write(String.valueOf(volume));
+			myWriter.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+	}
+
+	public String readFile(){
+		String data = "";
+		try {
+			File myObj = new File("resources/sounds/volume.txt");
+			Scanner myReader = new Scanner(myObj);
+			while (myReader.hasNextLine()) {
+				data = myReader.nextLine();
+			}
+			myReader.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+		return data;
 	}
 }

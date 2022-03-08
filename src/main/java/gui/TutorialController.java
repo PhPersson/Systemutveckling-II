@@ -27,6 +27,9 @@ public class TutorialController {
 	private Pane tutorialPane;
 	@FXML
 	private ImageView btnNext;
+	//In progress
+	@FXML
+	private ImageView btnBack;
 
 	private int tutorialProgress;
 	public SettingsController settingsController;
@@ -123,7 +126,24 @@ public class TutorialController {
 			addButtonListenerPlay();
 		}else{
 			addButtonListenerNext();
+			//addBackButtonListenerNext();
 		}
+	}
+
+	//In progress
+	public void goBack(){
+		this.tutorialProgress = tutorialProgress-1;
+		String buttonName = "backButton";
+		tutorialPane.requestLayout();
+		Image image = new Image(Paths.get("resources/images/tutorial" + tutorialProgress + ".png").toUri().toString(), 1280, 720, true, true);
+		imgTutorial = new ImageView(image);
+		tutorialPane.getChildren().add(imgTutorial);
+
+		image = new Image(Paths.get("resources/images/" + buttonName + ".png").toUri().toString(), 170, 95, true, true);
+		btnBack = new ImageView(image);
+		btnBack.setX(1090);
+		btnBack.setY(550);
+		tutorialPane.getChildren().add(btnBack);
 	}
 
 	/**
@@ -133,6 +153,17 @@ public class TutorialController {
 		btnNext.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override public void handle(MouseEvent event) {
 				placeImg();
+			}
+		});
+	}
+
+	/**
+	 * Listener for back button in tutorial.
+	 */
+	public void addBackButtonListenerNext(){
+		btnBack.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override public void handle(MouseEvent event) {
+				goBack();
 			}
 		});
 	}

@@ -57,7 +57,7 @@ public class Sound {
 	 * Starts playing the background music.
 	 */
 	public void playBackgroundMusic() {
-		mp.setVolume(0.3);
+		mp.setVolume(0.05);
 		mp.play();
 		isPlaying = true;
 	}

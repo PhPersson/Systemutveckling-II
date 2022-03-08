@@ -20,7 +20,6 @@ public class RuleController{
 	 * @throws IOException
 	 */
 	public void rules() throws IOException{
-		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Regler");
 		window.setWidth(1100);
 		window.setHeight(633);

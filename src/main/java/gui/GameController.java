@@ -1,9 +1,14 @@
 package gui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Scanner;
+
 import aiClass.Ai;
 import controller.SPController;
 import deck.Card;
@@ -197,6 +202,7 @@ public class GameController {
   private TutorialController tutorialWindow;
   private int AllInViability = 0;
   private Label[] collectionOfPots;
+  public AudioChecker ac;
 
 
   /**
@@ -235,6 +241,8 @@ public class GameController {
 
     this.ivSoundOff.setVisible(false);
     this.ivSoundOff.setDisable(true);
+    ac = new AudioChecker(sound, this);
+    ac.start();
   }
 
 
@@ -527,6 +535,7 @@ public class GameController {
   public void soundSetting() {
     if (sound.cardFold.getVolume() > 0) {
       changeSoundIcon(true);
+      writeVolume(0.0);
       sound.cardFold.setVolume(0);
       sound.checkSound.setVolume(0);
       sound.chipMulti.setVolume(0);
@@ -538,6 +547,7 @@ public class GameController {
       sound.wrongSound.setVolume(0);
     } else if (sound.cardFold.getVolume() == 0) {
       changeSoundIcon(false);
+      writeVolume(0.2);
       sound.cardFold.setVolume(1);
       sound.checkSound.setVolume(1);
       sound.chipMulti.setVolume(1);
@@ -1537,5 +1547,86 @@ public class GameController {
     });
   }
 
+  public void writeVolume(double volume){
+    try {
+      FileWriter myWriter = new FileWriter("resources/sounds/volume.txt");
+      myWriter.write(String.valueOf(volume));
+      myWriter.close();
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
 
+  public class AudioChecker implements Runnable {
+    private Thread thread = null;
+    private Sound sound;
+    private GameController gcontroller;
+
+    public AudioChecker(Sound sound, GameController gcontroller) {
+      this.sound = sound;
+      this.gcontroller = gcontroller;
+    }
+
+    public void checkAudio() throws InterruptedException {
+      while(true){
+        double audio = Double.parseDouble(readFile());
+        if(audio > 0.0){
+          gcontroller.changeSoundIcon(false);
+          sound.cardFold.setVolume(1);
+          sound.checkSound.setVolume(1);
+          sound.chipMulti.setVolume(1);
+          sound.shuffleSound.setVolume(1);
+          sound.singleCard.setVolume(1);
+          sound.chipSingle.setVolume(1);
+          sound.chipMulti.setVolume(1);
+          sound.coinSound.setVolume(1);
+          sound.wrongSound.setVolume(1);
+        }
+        else {
+          gcontroller.changeSoundIcon(true);
+          sound.cardFold.setVolume(0);
+          sound.checkSound.setVolume(0);
+          sound.chipMulti.setVolume(0);
+          sound.shuffleSound.setVolume(0);
+          sound.singleCard.setVolume(0);
+          sound.chipSingle.setVolume(0);
+          sound.chipMulti.setVolume(0);
+          sound.coinSound.setVolume(0);
+          sound.wrongSound.setVolume(0);
+        }
+        Thread.sleep(1000);
+      }
+    }
+
+    public String readFile(){
+      String data = "";
+      try {
+        File myObj = new File("resources/sounds/volume.txt");
+        Scanner myReader = new Scanner(myObj);
+        while (myReader.hasNextLine()) {
+          data = myReader.nextLine();
+        }
+        myReader.close();
+      } catch (FileNotFoundException e) {
+        System.out.println("An error occurred.");
+        e.printStackTrace();
+      }
+      return data;
+    }
+
+    public void start(){
+      thread = new Thread(this);
+      thread.start();
+    }
+
+    @Override
+    public void run() {
+      try {
+        checkAudio();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
 }

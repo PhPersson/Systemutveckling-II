@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Controller for FXML-doc FirstMenu.fxml.
@@ -36,6 +38,7 @@ public class FMController {
 	 * @throws Exception
 	 */
 	public void initialize() throws Exception {
+		writeVolume(0.2);
 		this.sound = new Sound();
 		this.ivSoundMenuOff.setVisible(false);
 		this.ivSoundMenuOff.setDisable(true);
@@ -68,18 +71,33 @@ public class FMController {
 	public void LoadGameClicked() throws IOException {
 		this.sound.playSound("wrong");
 	}
-	public void pauseMusic() {
+	public void pauseMusic() throws InstantiationException, IllegalAccessException {
+		writeVolume(0.0);
+		Sound.class.newInstance().mp.setVolume(0.0);
 		sound.pauseMusic();
 		ivSoundMenuOff.setVisible(true);
 		ivSoundMenuOff.setDisable(false);
 		ivSoundMenu.setVisible(false);
 		ivSoundMenu.setDisable(true);
 	}
-	public void playMusic() {
+	public void playMusic() throws InstantiationException, IllegalAccessException {
+		writeVolume(0.2);
+		Sound.class.newInstance().mp.setVolume(0.2);
 		sound.playBackgroundMusic();
 		ivSoundMenu.setVisible(true);
 		ivSoundMenu.setDisable(false);
 		ivSoundMenuOff.setVisible(false);
 		ivSoundMenuOff.setDisable(true);
+	}
+
+	public void writeVolume(double volume){
+		try {
+			FileWriter myWriter = new FileWriter("resources/sounds/volume.txt");
+			myWriter.write(String.valueOf(volume));
+			myWriter.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
 	}
 }
