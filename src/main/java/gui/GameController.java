@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -23,6 +24,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
+import javax.swing.*;
 
 /**
  * @author Amin Harirchian, Vedrana Zeba, Lykke Levin, Rikard Almgren
@@ -972,6 +975,12 @@ public class GameController {
     public String askForPlayerDecision() {
 
         handleButtons();
+
+        JOptionPane jOptionPane = new JOptionPane(new JLabel("Din tur!", JLabel.CENTER));
+        JDialog dialog = jOptionPane.createDialog("");
+        dialog.setSize(new Dimension(200, 200));
+        dialog.setVisible(true);
+
         playerMadeDecision = false;
         while (!playerMadeDecision) {
             try {
