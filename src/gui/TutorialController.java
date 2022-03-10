@@ -16,147 +16,154 @@ import javafx.stage.Stage;
 
 /**
  * Tutorial state.
- * 
+ *
  * @author Vedrana Zeba
  */
 public class TutorialController {
 
-	@FXML
-	private ImageView imgTutorial;
-	@FXML
-	private Pane tutorialPane;
-	@FXML
-	private ImageView btnNext;
+    @FXML
+    private ImageView imgTutorial;
+    @FXML
+    private Pane tutorialPane;
+    @FXML
+    private ImageView btnNext;
 
-	public int tutorialProgress;
-	public SettingsController settingsController;
-	public GameController gameController;
-	public Stage window = new Stage();
-	public int gc;
+    public int tutorialProgress;
+    public SettingsController settingsController;
+    public GameController gameController;
+    public Stage window = new Stage();
+    public int gc;
 
-	/**
-	 * Creates the tutorial window object, does not show the window.
-	 * @param settingsController settingsController-object (self)
-	 */
-	public TutorialController(SettingsController settingsController, int nr){
-		gc = nr;
-		this.settingsController = settingsController;
-	}
-	
-	/**
-	 * Creates the tutorial window object, does not show the window.
-	 * @param gameController gameController-object (self)
-	 */
-	public TutorialController(GameController gameController){
-		
-		this.gameController = gameController;
-	}
+    /**
+     * Creates the tutorial window object, does not show the window.
+     *
+     * @param settingsController settingsController-object (self)
+     */
+    public TutorialController(SettingsController settingsController, int nr) {
+        gc = nr;
+        this.settingsController = settingsController;
+    }
 
-	/**
-	 * In order to prevent crash (fx:controller in Tutorial.fxml)
-	 */
-	public TutorialController() {
-	}
+    /**
+     * Creates the tutorial window object, does not show the window.
+     *
+     * @param gameController gameController-object (self)
+     */
+    public TutorialController(GameController gameController) {
 
-	/**
-	 * Initializes the tutorial window and all UI objects. Loads tutorial.fxml and starts the "button-listener" for next.
-	 * If the user cancels the tutorial mid-way, the user is sent to the game state.
-	 * @throws IOException
-	 */
-	public void setupUI() throws IOException{
-		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle("Tutorial");
-		window.setWidth(1285);
-		window.setHeight(730);
-		window.setOnCloseRequest(e -> settingsController.startGameWindow());
-		this.tutorialPane = (Pane) FXMLLoader.load(RuleController.class.getResource("/Tutorial.fxml"));
-		Scene scene = new Scene(tutorialPane);
-		window.setScene(scene);
-		window.show();
+        this.gameController = gameController;
+    }
 
-		this.tutorialProgress = 0;
-		placeImg();
+    /**
+     * In order to prevent crash (fx:controller in Tutorial.fxml)
+     */
+    public TutorialController() {
+    }
 
-	}
-	/**
-	 * Initializes the tutorial window and all UI objects. Loads tutorial.fxml and starts the "button-listener" for next.
-	 * If the user cancels the tutorial mid-way, the window closes and the user is sent back to the game.
-	 * @throws IOException
-	 */
-	public void setupUIinGame() throws IOException {
-	window.initModality(Modality.APPLICATION_MODAL);
-	window.setTitle("Tutorial");
-	window.setWidth(1285);
-	window.setHeight(730);
-	window.setOnCloseRequest(e -> closeProgram());
-	this.tutorialPane = (Pane) FXMLLoader.load(RuleController.class.getResource("/Tutorial.fxml"));
-	Scene scene = new Scene(tutorialPane);
-	window.setScene(scene);
-	window.show();
+    /**
+     * Initializes the tutorial window and all UI objects. Loads tutorial.fxml and starts the "button-listener" for next.
+     * If the user cancels the tutorial mid-way, the user is sent to the game state.
+     *
+     * @throws IOException
+     */
+    public void setupUI() throws IOException {
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Tutorial");
+        window.setWidth(1285);
+        window.setHeight(730);
+        window.setOnCloseRequest(e -> settingsController.startGameWindow());
+        this.tutorialPane = (Pane) FXMLLoader.load(RuleController.class.getResource("/Tutorial.fxml"));
+        Scene scene = new Scene(tutorialPane);
+        window.setScene(scene);
+        window.show();
 
-	this.tutorialProgress = 0;
-	placeImg();
-	}
-	
-	/**
-	 * Activates correct listener based on tutorialProgress. There are 17 steps, the last step launches the game.
-	 */
-	public void placeImg(){
-		this.tutorialProgress = tutorialProgress+1;
-		System.out.println(tutorialProgress);
-		String buttonName = "nästaButton";
-		if(tutorialProgress == 17){
-			buttonName = "spelaButton"; 
-		}
-		tutorialPane.requestLayout();
-		Image image = new Image(Paths.get("resources/images/tutorial" + tutorialProgress + ".png").toUri().toString(), 1280, 720, true, true);
-		imgTutorial = new ImageView(image);
-		tutorialPane.getChildren().add(imgTutorial);
+        this.tutorialProgress = 0;
+        placeImg();
 
-		image = new Image(Paths.get("resources/images/" + buttonName + ".png").toUri().toString(), 170, 95, true, true);
-		btnNext = new ImageView(image);
-		btnNext.setX(1090);
-		btnNext.setY(570.5);
-		tutorialPane.getChildren().add(btnNext);
+    }
+
+    /**
+     * Initializes the tutorial window and all UI objects. Loads tutorial.fxml and starts the "button-listener" for next.
+     * If the user cancels the tutorial mid-way, the window closes and the user is sent back to the game.
+     *
+     * @throws IOException
+     */
+    public void setupUIinGame() throws IOException {
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Tutorial");
+        window.setWidth(1285);
+        window.setHeight(730);
+        window.setOnCloseRequest(e -> closeProgram());
+        this.tutorialPane = (Pane) FXMLLoader.load(RuleController.class.getResource("/Tutorial.fxml"));
+        Scene scene = new Scene(tutorialPane);
+        window.setScene(scene);
+        window.show();
+
+        this.tutorialProgress = 0;
+        placeImg();
+    }
+
+    /**
+     * Activates correct listener based on tutorialProgress. There are 17 steps, the last step launches the game.
+     */
+    public void placeImg() {
+        this.tutorialProgress = tutorialProgress + 1;
+        System.out.println(tutorialProgress);
+        String buttonName = "nästaButton";
+        if (tutorialProgress == 17) {
+            buttonName = "spelaButton";
+        }
+        tutorialPane.requestLayout();
+        Image image = new Image(Paths.get("resources/images/tutorial" + tutorialProgress + ".png").toUri().toString(), 1280, 720, true, true);
+        imgTutorial = new ImageView(image);
+        tutorialPane.getChildren().add(imgTutorial);
+
+        image = new Image(Paths.get("resources/images/" + buttonName + ".png").toUri().toString(), 170, 95, true, true);
+        btnNext = new ImageView(image);
+        btnNext.setX(1090);
+        btnNext.setY(570.5);
+        tutorialPane.getChildren().add(btnNext);
 
 
-		if(tutorialProgress == 17){
-			addButtonListenerPlay();
-		}else{
-			addButtonListenerNext();
-		}
-	}
+        if (tutorialProgress == 17) {
+            addButtonListenerPlay();
+        } else {
+            addButtonListenerNext();
+        }
+    }
 
-	/**
-	 * Listener for next picture.
-	 */
-	public void addButtonListenerNext(){
-		btnNext.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override public void handle(MouseEvent event) {
-				placeImg();
-			}
-		});
-	}
+    /**
+     * Listener for next picture.
+     */
+    public void addButtonListenerNext() {
+        btnNext.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                placeImg();
+            }
+        });
+    }
 
-	/**
-	 * Listener for start game.
-	 */
-	public void addButtonListenerPlay(){
-		btnNext.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override public void handle(MouseEvent event) {
-				
-				if(gc==1){
-					settingsController.startGameWindow();
-				}
-				closeProgram();
-			}
-		});
-	}
+    /**
+     * Listener for start game.
+     */
+    public void addButtonListenerPlay() {
+        btnNext.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
-	/**
-	 * Closes the tutorial window.
-	 */
-	public void closeProgram() {
-		window.close();
-	}
+                if (gc == 1) {
+                    settingsController.startGameWindow();
+                }
+                closeProgram();
+            }
+        });
+    }
+
+    /**
+     * Closes the tutorial window.
+     */
+    public void closeProgram() {
+        window.close();
+    }
 }
