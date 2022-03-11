@@ -978,11 +978,7 @@ public class GameController {
     public String askForPlayerDecision() {
 
         handleButtons();
-
-//        JOptionPane jOptionPane = new JOptionPane(new JLabel("Din tur!", JLabel.CENTER));
-//        JDialog dialog = jOptionPane.createDialog("");
-//        dialog.setSize(new Dimension(200, 200));
-//        dialog.setVisible(true);
+        
         try {
             BufferedImage image = ImageIO.read(new File("resources/images/yourTurnText.png"));
             JLabel picLabel = new JLabel(new ImageIcon(image));
