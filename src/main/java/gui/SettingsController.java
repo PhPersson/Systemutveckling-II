@@ -154,8 +154,6 @@ public class SettingsController {
      * @throws IOException
      */
     public void startGame() throws IOException {
-
-
         potSliderChange();
         aiSliderChange();
         if (!tfNameInput.getText().isEmpty()) {
@@ -163,19 +161,16 @@ public class SettingsController {
             spController = new SPController();
             changeScene.setSPController(spController);
 
-
             if (cbOn.isSelected()) {
                 Platform.runLater(() -> {
-
                     try {
                         this.tutorialWindow = new TutorialController(this, 1);
-                        tutorialWindow.setupUI();
+                        tutorialWindow.setupUI(false);
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 });
-
             } else {
                 //do it here
                 startGameWindow();

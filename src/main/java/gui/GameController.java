@@ -1481,7 +1481,7 @@ public class GameController {
         Platform.runLater(() -> {
             this.tutorialWindow = new TutorialController(this);
             try {
-                tutorialWindow.setupUIinGame();
+                tutorialWindow.setupUI(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }

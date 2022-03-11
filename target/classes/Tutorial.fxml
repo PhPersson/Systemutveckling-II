@@ -17,9 +17,9 @@
             </image>
         </ImageView>
         <ImageView fx:id="btnBack" fitHeight="93.0" fitWidth="170.0" layoutX="150.0" layoutY="201.0"
-                   onMouseReleased="#goBack">
+                   onMouseReleased="#placeImg">
             <image>
-                <Image url="@images/nastaButton.png"/>
+                <Image url="@images/backButtonTutorial.png"/>
             </image>
         </ImageView>
     </children>

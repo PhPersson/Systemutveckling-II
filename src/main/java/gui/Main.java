@@ -2,11 +2,9 @@ package gui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.util.Optional;
 
@@ -37,8 +35,8 @@ public class Main extends Application {
          */
         primaryStage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirm Close");
-            alert.setHeaderText("Close program?");
+            alert.setTitle("Exit program");
+            alert.setHeaderText("Exit?");
             Optional<ButtonType> result = alert.showAndWait();
 
             if(result.isPresent() && result.get() != ButtonType.OK){
@@ -52,7 +50,6 @@ public class Main extends Application {
 
         window.setScene(cs.firstScene());
         window.show();
-
     }
 
     /**
