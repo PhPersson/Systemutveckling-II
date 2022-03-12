@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.*;
+import java.awt.font.ImageGraphicAttribute;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -25,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -975,11 +978,14 @@ public class GameController {
     public String askForPlayerDecision() {
 
         handleButtons();
-
-        JOptionPane jOptionPane = new JOptionPane(new JLabel("Din tur!", JLabel.CENTER));
-        JDialog dialog = jOptionPane.createDialog("");
-        dialog.setSize(new Dimension(200, 200));
-        dialog.setVisible(true);
+        
+        try {
+            BufferedImage image = ImageIO.read(new File("resources/images/yourTurnText.png"));
+            JLabel picLabel = new JLabel(new ImageIcon(image));
+            JOptionPane.showMessageDialog(null, picLabel, "Your turn!", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         playerMadeDecision = false;
         while (!playerMadeDecision) {
