@@ -75,10 +75,8 @@ public class SettingsController {
 
     /**
      * Method for initializing FXML.
-     *
-     * @throws Exception
      */
-    public void initialize() throws Exception {
+    public void initialize() {
         potSlider.setSnapToTicks(true);
         potSlider.setValue(5000);
         aiSlider.setSnapToTicks(true);
@@ -97,7 +95,6 @@ public class SettingsController {
      * @param sceneChanger an instance of the class ChangeScene
      */
     public void setChangeScene(ChangeScene sceneChanger) {
-
         this.changeScene = sceneChanger;
     }
 
@@ -107,14 +104,12 @@ public class SettingsController {
     public void aiSliderChange() {
         Double val = aiSlider.getValue();
         aiValue = val.intValue();
-
     }
 
     /**
      * Stores the value from the Slider that the user has chosen.
      */
     public void potSliderChange() {
-
         Double val = potSlider.getValue();
         potValue = val.intValue();
 
@@ -124,13 +119,11 @@ public class SettingsController {
      * If ComboBox is selected by the user, disable the button true.
      */
     public void cbOnClicked() {
-
         if (cbOff.isSelected()) {
             cbOff.setSelected(false);
             cbOff.setDisable(false);
             cbOn.setSelected(true);
             cbOn.setDisable(true);
-
         }
     }
 
@@ -138,24 +131,21 @@ public class SettingsController {
      * If ComboBox is selected by the user, disable the button true.
      */
     public void cbOffClicked() {
-
         if (cbOn.isSelected()) {
             cbOn.setSelected(false);
             cbOn.setDisable(false);
             cbOff.setSelected(true);
             cbOff.setDisable(true);
-
         }
     }
 
     /**
      * Starts the game and checks so the Username it not empty and checks if the Tutorial should be playing at the beginning.
-     *
-     * @throws IOException
      */
-    public void startGame() throws IOException {
+    public void startGame() {
         potSliderChange();
         aiSliderChange();
+
         if (!tfNameInput.getText().isEmpty()) {
             name = tfNameInput.getText();
             spController = new SPController();
@@ -179,9 +169,7 @@ public class SettingsController {
             sound.playSound("wrong");
             confirmBox = new ConfirmBox();
             confirmBox.displayError("Varning", "Du måste välja ett användarnamn för att starta spelet");
-
         }
-
     }
 
     /**
@@ -237,7 +225,6 @@ public class SettingsController {
      * Shows a label if question mark is hovered.
      */
     public void ivQuestionAiHovered() {
-
         lblAiInfo.setVisible(true);
         ivQuestionAi.setOnMouseExited(e -> lblAiInfo.setVisible(false));
 
@@ -247,7 +234,6 @@ public class SettingsController {
      * Shows a label if question mark is hovered.
      */
     public void ivQuestionPotHovered() {
-
         lblPotInfo.setVisible(true);
         ivQuestionPot.setOnMouseExited(e -> lblPotInfo.setVisible(false));
 
@@ -257,7 +243,6 @@ public class SettingsController {
      * Shows a label if question mark is hovered.
      */
     public void ivQuestionTutorialHovered() {
-
         lblTutorialInfo.setVisible(true);
         ivQuestionTutorial.setOnMouseExited(e -> lblTutorialInfo.setVisible(false));
     }
@@ -320,17 +305,21 @@ public class SettingsController {
 
     public String readFile() {
         String data = "";
+
         try {
             File myObj = new File("resources/sounds/volume.txt");
             Scanner myReader = new Scanner(myObj);
+
             while (myReader.hasNextLine()) {
                 data = myReader.nextLine();
             }
+
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+
         return data;
     }
 }

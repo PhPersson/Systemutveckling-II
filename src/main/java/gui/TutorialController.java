@@ -15,9 +15,13 @@ import javafx.stage.Stage;
 /**
  * Tutorial state.
  *
- * @author Vedrana Zeba
+ * @author Vedrana Zeba, Jonathan Engström
  */
 public class TutorialController {
+    @FXML
+    public ImageView btnNext;
+    @FXML
+    public ImageView btnBack;
     @FXML
     private ImageView imgTutorial;
     @FXML
@@ -61,16 +65,16 @@ public class TutorialController {
      * @throws IOException
      */
     public void setupUI(boolean inGame) throws IOException {
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Tutorial");
-        window.setWidth(1285);
-        window.setHeight(730);
         if (inGame) {
             window.setOnCloseRequest(e -> window.close());
         } else {
             window.setOnCloseRequest(e -> settingsController.startGameWindow());
         }
-        this.tutorialPane = (Pane) FXMLLoader.load(RuleController.class.getResource("/Tutorial.fxml"));
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Tutorial");
+        window.setWidth(1285);
+        window.setHeight(730);
+        this.tutorialPane = FXMLLoader.load(RuleController.class.getResource("/Tutorial.fxml"));
         Scene scene = new Scene(tutorialPane);
         window.setScene(scene);
         window.show();
@@ -104,6 +108,7 @@ public class TutorialController {
                 if (tutorialProgress > 1) {
                     tutorialProgress = tutorialProgress - 1;
                 }
+
                 placeImg();
             });
         }

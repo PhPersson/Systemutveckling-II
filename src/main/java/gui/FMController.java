@@ -5,10 +5,8 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * Controller for FXML-doc FirstMenu.fxml.
@@ -18,7 +16,6 @@ import java.io.IOException;
  */
 
 public class FMController {
-
     private ChangeScene changeScene;
     private Sound sound;
     @FXML
@@ -60,7 +57,7 @@ public class FMController {
      * @throws Exception
      */
     public void NewGameClicked() throws Exception {
-        changeScene.switchScenetoSetting();
+        changeScene.switchSceneToSetting();
     }
 
     /**

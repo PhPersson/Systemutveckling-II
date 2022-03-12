@@ -39,15 +39,13 @@ public class AiCalculation {
      * one for cardnumbers and one for cardcolor.
      */
     public void getCardValues() {
-        for (int i = 0; i < aiCards.size(); i++) { // CardNumber
-            String temp = aiCards.get(i);
+        for (String temp : aiCards) { // CardNumber
             String[] splitter = temp.split(",");
             int tempInt = Integer.parseInt(splitter[0]);
             cardNbr.add(tempInt);
         }
 
-        for (int i = 0; i < aiCards.size(); i++) { // CardColor
-            String temp = aiCards.get(i);
+        for (String temp : aiCards) { // CardColor
             String[] splitter = temp.split(",");
             String tempString = splitter[1];
             cardClr.add(tempString);
@@ -102,25 +100,19 @@ public class AiCalculation {
         }
 
         if (S > color) {
-
             color = S;
-
         }
 
         if (H > color) {
-
             color = H;
-
         }
+
         if (D > color) {
-
             color = D;
-
         }
+
         if (C > color) {
-
             color = C;
-
         }
 
         return color;
@@ -132,10 +124,9 @@ public class AiCalculation {
      * @return returns how main pairs or more that the ai has.
      */
     public int checkPairAndMore() {
-
-        int nbrOftemp = 0;
-        int nbrOftemp1 = 0;
-        int nbrOftemp2 = 0;
+        int nbrOfTemp = 0;
+        int nbrOfTemp1 = 0;
+        int nbrOfTemp2 = 0;
         int[] cards = new int[cardNbr.size()];
 
         for (int i = 0; i < cardNbr.size(); i++) {
@@ -144,44 +135,44 @@ public class AiCalculation {
 
         if (cards[0] == cards[1]) {
             int temp = cards[0];
-            nbrOftemp = 2;
+            nbrOfTemp = 2;
 
             for (int i = 2; i < cards.length; i++) {
                 if (cards[i] == temp) {
-                    nbrOftemp++;
+                    nbrOfTemp++;
                 }
             }
         } else {
             int temp1 = cards[0];
             int temp2 = cards[1];
 
-            nbrOftemp1 = 1;
-            nbrOftemp2 = 1;
+            nbrOfTemp1 = 1;
+            nbrOfTemp2 = 1;
 
             for (int i = 2; i < cards.length; i++) {
 
                 if (cards[i] == temp1) {
-                    nbrOftemp1++;
+                    nbrOfTemp1++;
                 }
                 if (cards[i] == temp2) {
-                    nbrOftemp2++;
+                    nbrOfTemp2++;
                 }
             }
         }
 
-        if (nbrOftemp > 0) {
-            same = nbrOftemp;
+        if (nbrOfTemp > 0) {
+            same = nbrOfTemp;
         }
 
-        if (nbrOftemp1 > 1) {
-            same = nbrOftemp1;
+        if (nbrOfTemp1 > 1) {
+            same = nbrOfTemp1;
         }
 
-        if (nbrOftemp2 > 1) {
-            if (nbrOftemp1 > 1) {
-                same = Integer.parseInt(nbrOftemp1 + "" + nbrOftemp2);
+        if (nbrOfTemp2 > 1) {
+            if (nbrOfTemp1 > 1) {
+                same = Integer.parseInt(nbrOfTemp1 + "" + nbrOfTemp2);
             } else
-                same = nbrOftemp2;
+                same = nbrOfTemp2;
         }
 
         if (same == 1) {
@@ -219,13 +210,11 @@ public class AiCalculation {
 
             for (int i = 0; i < tempArray.length; i++) {
                 if (tempArray[i] >= currentHighestInStraight - 4 && tempArray[i] <= currentHighestInStraight) {            //	 temp-4> i <temp  when i is within this range
-
                     if (i > 0) {
                         if (!(tempArray[i] == tempArray[i - 1]) && (tempArray[i - 1] >= currentLowestInStraight && tempArray[i - 1] <= currentHighestInStraight)) { // kollar om 1-4 är samma som nån annan.
                             inStraight++;
                         }
                     }
-
                 }
             }
 
@@ -233,40 +222,48 @@ public class AiCalculation {
                 treshold = inStraight;
             }
         }
+
         if (treshold == 5) {
             straight = true;
         }
+
         return treshold;
     }
 
     /**
-     * Sets the handStrenght of the ai-player.
+     * Sets the handStrength of the ai-player.
      *
-     * @return returns the ai-players current handStrenght.
+     * @return returns the ai-players current handStrength.
      */
-    public int calcHandstrenght() {
-
+    public int calcHandStrength() {
         if (same == 2) {
             handStrength = 1;
         }
+
         if (same == 22) {
             handStrength = 2;
         }
+
         if (same == 3) {
             handStrength = 3;
         }
+
         if (straight) {
             handStrength = 4;
         }
+
         if (flush) {
             handStrength = 5;
         }
+
         if (same == 23 || same == 32) {
             handStrength = 6;
         }
+
         if (same == 4 || same == 42 || same == 24) {
             handStrength = 7;
         }
+
         if (flush && straight) {
             handStrength = 8;
         }

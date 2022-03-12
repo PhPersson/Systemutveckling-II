@@ -3,6 +3,7 @@ package deck;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -56,13 +57,13 @@ public class Deck {
      * Creates a deck of cards
      */
     public void createDeck() {
-        deck = new ArrayList<Card>();
+        deck = new ArrayList<>();
 
         for (Suit suit : Suit.values()) {
             try {
                 for (CardValue card : CardValue.values()) {
-                    deck.add(new Card(suit, card, new ImageIcon(ImageIO.read(classLoader.getResourceAsStream(
-                            "images/" + card.getCardValue() + suit.getSuitLetter() + ".png")))));
+                    deck.add(new Card(suit, card, new ImageIcon(ImageIO.read(Objects.requireNonNull(classLoader.getResourceAsStream(
+                            "images/" + card.getCardValue() + suit.getSuitLetter() + ".png"))))));
                 }
 
             } catch (IOException e) {

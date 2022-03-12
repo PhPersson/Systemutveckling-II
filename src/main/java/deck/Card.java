@@ -9,10 +9,10 @@ import javax.swing.Icon;
  */
 
 public class Card {
-
     private Suit cardSuit;
     private CardValue cardValue;
     private Icon cardIcon;
+
 
     /**
      * Creates a Card with a suit, value and picture
@@ -27,6 +27,7 @@ public class Card {
         this.cardIcon = cardIcon;
     }
 
+
     /**
      * Returns the value of the card.
      *
@@ -36,6 +37,7 @@ public class Card {
         return cardValue.getCardValue();
     }
 
+
     /**
      * Returns the suit of the card.
      *
@@ -44,6 +46,7 @@ public class Card {
     public String getCardSuit() {
         return cardSuit.toString();
     }
+
 
     /**
      * Returns the icon of the card.

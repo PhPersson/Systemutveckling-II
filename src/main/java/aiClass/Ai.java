@@ -12,9 +12,7 @@ import deck.Card;
  * @author Max Frennessen 17-05-25
  * @version 2.0
  */
-
 public class Ai {
-
     private AiDecide aiDecide;
     private boolean isSmallBlind, isBigBlind, sameTurn = false;
     private int paidThisTurn = 0;
@@ -24,8 +22,7 @@ public class Ai {
     // som kommer in och som skickas till
     // turns.
     private int aiPot, highCard, handStrength; // AIPOT - KOMMER IN VIA CONTROLLER.
-    private int AllInViability = 99;
-
+    private int allInViability = 99;
 
     /**
      * sets the starting potsize and the ai's name.
@@ -38,7 +35,6 @@ public class Ai {
         this.aiPot = aiPot;
     }
 
-
     /**
      * Receives the Ai-players two first cards.
      *
@@ -46,20 +42,20 @@ public class Ai {
      * @param card2 The second card the ai-player gets.
      */
     public void setStartingHand(Card card1, Card card2) { // set starting hand
-
         aiCards.clear(); // resets the arraylist.
         char A = card1.getCardSuit().charAt(0);
         char B = card2.getCardSuit().charAt(0);
-        String firstCard = card1.getCardValue() + "," + String.valueOf(A);
-        String secondCard = card2.getCardValue() + "," + String.valueOf(B);
+        String firstCard = card1.getCardValue() + "," + A;
+        String secondCard = card2.getCardValue() + "," + B;
         this.highCard = card1.getCardValue();
+
         if (card2.getCardValue() > highCard) {
             highCard = card2.getCardValue();
         }
+
         aiCards.add(firstCard);
         aiCards.add(secondCard);
     }
-
 
     /**
      * Makes decision for the starting hand
@@ -67,14 +63,12 @@ public class Ai {
      * @param currentBet How much the Ai-player as to bet to be able to play this turn.
      */
     public void makeDecision(int currentBet) {
-
         aiDecide = new AiDecide(aiCards, aiPot, currentBet, paidThisTurn, sameTurn);
         whatToDo = aiDecide.decision();
         this.paidThisTurn += aiPot - aiDecide.updateAiPot();
         handStrength = aiDecide.gethandStrength();
         aiPot = aiDecide.updateAiPot();
     }
-
 
     /**
      * Makes the decision for the flop
@@ -83,7 +77,6 @@ public class Ai {
      * @param flop       The three cards that will be set on the table that all players can use.
      */
     public void makeDecision(int currentBet, Card[] flop) {
-
         if (!sameTurn) {
             for (Card card : flop) {
                 char A = card.getCardSuit().charAt(0);
@@ -98,7 +91,6 @@ public class Ai {
         handStrength = aiDecide.gethandStrength();
     }
 
-
     /**
      * Makes the decision for the last two turns of the game. If there are less than 7 cards its the
      * second last turn and it calls for a calculation on that turn. And if its 7 cards its the last
@@ -108,7 +100,6 @@ public class Ai {
      * @param turn       Another cards gets added to the table that all the players can use.
      */
     public void makeDecision(int currentBet, Card turn) {
-
         if (!sameTurn) {
             char A = turn.getCardSuit().charAt(0);
             aiCards.add(turn.getCardValue() + "," + String.valueOf(A));
@@ -128,9 +119,7 @@ public class Ai {
             aiPot = aiDecide.updateAiPot();
             handStrength = aiDecide.gethandStrength();
         }
-
     }
-
 
     /**
      * Makes sure that AI-players decision from last this isnt making a problem for current turns
@@ -139,10 +128,8 @@ public class Ai {
      * @param reset whatToDo.
      */
     public void setDecision(String reset) {
-
         whatToDo = reset;
     }
-
 
     /**
      * Returns the Decision the ai-player made this turn.
@@ -150,10 +137,8 @@ public class Ai {
      * @return returns the Decision the ai-player made.
      */
     public String getDecision() {
-
         return whatToDo;
     }
-
 
     /**
      * Returns how much the ai-player has left in his pot.
@@ -161,22 +146,18 @@ public class Ai {
      * @return returns the ai potSize
      */
     public int aiPot() {
-
         return aiPot;
     }
-
 
     /**
      * If ai-player wins the round this gets updated with the winning amount added to its current
      * potsize.
      *
-     * @param Updates the Ai's pot Size if it would win.
+     * @param aiPot the Ai's pot Size if it would win.
      */
     public void updateWinner(int aiPot) {
-
         this.aiPot += aiPot;
     }
-
 
     /**
      * Returns the name of the AI-player
@@ -184,10 +165,8 @@ public class Ai {
      * @return returns the name of the ai-player
      */
     public String getName() {
-
         return name;
     }
-
 
     /**
      * Checks if ai-player is bigblind or not and if it is. It takes a amount from the ai's pot
@@ -196,12 +175,10 @@ public class Ai {
      * @param b        if the ai-player is or isnt the bigBlind.
      */
     public void setBigBlind(int bigBlind, boolean b) {
-
         this.isBigBlind = b;
         aiPot -= bigBlind;
         this.paidThisTurn += bigBlind;
     }
-
 
     /**
      * Checks if ai-player is smallBlind or not and if it is. it takes a amount from the ai's pot
@@ -210,12 +187,10 @@ public class Ai {
      * @param b          if the ai-player is or isnt the smallBlind.
      */
     public void setSmallBlind(int smallBlind, boolean b) {
-
         this.isSmallBlind = b;
         aiPot -= smallBlind;
         this.paidThisTurn += smallBlind;
     }
-
 
     /**
      * Returns if the the ai-player is or isnt the smallBlind
@@ -223,10 +198,8 @@ public class Ai {
      * @return Returns if the the ai-player is or isnt the smallBlind
      */
     public boolean getIsSmallBlind() {
-
         return isSmallBlind;
     }
-
 
     /**
      * Returns if the the ai-player is or isnt the bigBlind
@@ -234,10 +207,8 @@ public class Ai {
      * @return Returns if the the ai-player is or isnt the bigBlind
      */
     public boolean getIsBigBlind() {
-
         return isBigBlind;
     }
-
 
     /**
      * Returns how much the ai-player has paid this turn
@@ -245,10 +216,8 @@ public class Ai {
      * @return Returns how much the ai-player has paid this turn
      */
     public int getPaidThisTurn() {
-
         return paidThisTurn;
     }
-
 
     /**
      * Sets how much the ai-player as already paid this turn
@@ -256,10 +225,8 @@ public class Ai {
      * @param paidThisTurn Sets how much the ai-player as already paid this turn
      */
     public void setPaidThisTurn(int paidThisTurn) {
-
         this.paidThisTurn = paidThisTurn;
     }
-
 
     /**
      * sets if its the same turn or not.
@@ -267,10 +234,8 @@ public class Ai {
      * @param sameTurn sets if it is the same turn or not.
      */
     public void setSameTurn(boolean sameTurn) {
-
         this.sameTurn = sameTurn;
     }
-
 
     /**
      * Returns the ai-players highest card
@@ -278,10 +243,8 @@ public class Ai {
      * @return returns the ai-players highest card
      */
     public int getHighCard() {
-
         return highCard;
     }
-
 
     /**
      * returns the handstrength of the ai-player
@@ -289,10 +252,8 @@ public class Ai {
      * @return returns the handstrength of the ai-player
      */
     public int handStrength() {
-
         return handStrength;
     }
-
 
     /**
      * returns if the ai-players viable for the currentpot.
@@ -300,10 +261,8 @@ public class Ai {
      * @return returns if the ai-players viable for the currentpot.
      */
     public int getAllInViability() {
-
-        return AllInViability;
+        return allInViability;
     }
-
 
     /**
      * sets if the ai-players viable for the currentpot or not.
@@ -311,11 +270,9 @@ public class Ai {
      * @param allInViability sets if the ai-players viable for the currentpot or not.
      */
     public void setAllInViability(int allInViability) {
-
-        if (allInViability < AllInViability) {
-            AllInViability = allInViability;
+        if (allInViability < this.allInViability) {
+            this.allInViability = allInViability;
         }
     }
-
 }
 

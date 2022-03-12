@@ -369,15 +369,15 @@ public class HandCalculation {
 		int pwrBar = 1;
 		//TURNONE PWRLEVEL
 		if (aiCards.size() == 2) {
-			pwrBar = pwrBarLvlOnTurnOne();
+			pwrBar = powerBarLvlOnTurnOne();
 		}
 		//TURNTWO PWRLEVEL
 		if (aiCards.size() == 5) {	
-			pwrBar = pwrBarLvlOnTurnTwo();
+			pwrBar = powerBarLvlOnTurnTwo();
 		}
 		//TURNTHREE PWRLEVEL
 		if (aiCards.size() == 6) {			
-		 pwrBar = pwrBarLvlOnTurnThree();
+		 pwrBar = powerBarLvlOnTurnThree();
 		}
 		//TURNFOUR PWRLEVEL
 		if (aiCards.size() == 7) {

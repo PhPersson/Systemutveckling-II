@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
  */
 
 public class ChangeScene {
-
     Pane rootMenu;
     Pane rootNewGame;
     Pane root2;
@@ -51,7 +50,6 @@ public class ChangeScene {
         gameController.setChangeScene(this);
         settingsController.setChangeScene(this);
         fmController.setChangeScene(this);
-
     }
 
     /**
@@ -59,7 +57,7 @@ public class ChangeScene {
      *
      * @throws IOException
      */
-    public void switchScenetoSetting() throws IOException {
+    public void switchSceneToSetting() throws IOException {
         Main.window.getScene().setRoot(rootNewGame);
     }
 
@@ -69,20 +67,17 @@ public class ChangeScene {
      * @throws IOException
      */
     public void switchScenetoGame() throws IOException {
-
         Main.window.getScene().setRoot(root2);
         gameController.setUsername(settingsController.getName());
         Sound.mp.setVolume(0.3);
-
     }
 
     /**
      * Method which returns the Scene(and First/main menu).
      *
      * @return bestScene the scene for the game.
-     * @throws IOException
      */
-    public Scene firstScene() throws IOException {
+    public Scene firstScene() {
         return bestScene;
     }
 

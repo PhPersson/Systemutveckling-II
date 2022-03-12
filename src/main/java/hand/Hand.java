@@ -11,13 +11,13 @@ import deck.Card;
  * @version 2.0
  */
 public class Hand {
-    private HandCalculation calc;
-    private ArrayList<Card> cards = new ArrayList<Card>();
-    private ArrayList<String> aiCards = new ArrayList<String>();
-    private ArrayList<String> toHighlight = new ArrayList<String>();
+    private HandCalculation handCalculation;
+    private ArrayList<Card> cards;
+    private ArrayList<String> aiCards = new ArrayList<>();
+    private ArrayList<String> toHighlight;
     private String helper;
     private String advice;
-    private int pwrBar, handStrenght;
+    private int powerBar, handStrength;
 
     /**
      * Constructor
@@ -28,12 +28,11 @@ public class Hand {
         this.cards = cards;
         convertToReadable();
 
-        calc = new HandCalculation(aiCards);
-        helper = calc.Help();
-        advice = calc.advice();
-        pwrBar = calc.calcPwrBarLvl();
-        toHighlight = calc.toHiglight();
-
+        handCalculation = new HandCalculation(aiCards);
+        helper = handCalculation.Help();
+        advice = handCalculation.advice();
+        powerBar = handCalculation.calcPwrBarLvl();
+        toHighlight = handCalculation.toHighlight();
     }
 
 
@@ -41,11 +40,9 @@ public class Hand {
      * Converts the cards into readable Strings.
      */
     public void convertToReadable() {
-
-        for (int i = 0; i < cards.size(); i++) {
-            Card cardTemp = cards.get(i);
+        for (Card cardTemp : cards) {
             char A = cardTemp.getCardSuit().charAt(0);
-            String temp = cardTemp.getCardValue() + "," + String.valueOf(A);
+            String temp = cardTemp.getCardValue() + "," + A;
             aiCards.add(temp);
         }
     }
@@ -55,10 +52,9 @@ public class Hand {
      * Recalculates advice and which cards to highlight. Required when adding and removing cards.
      */
     public void reCalc() {
-        this.calc = new HandCalculation(aiCards);
-
-        this.advice = calc.advice();
-        this.toHighlight = calc.toHiglight();
+        this.handCalculation = new HandCalculation(aiCards);
+        this.advice = handCalculation.advice();
+        this.toHighlight = handCalculation.toHighlight();
     }
 
     /**
@@ -67,7 +63,7 @@ public class Hand {
      * @return a int that represents the users cardStregnth
      */
     public int toPowerBar() {
-        return pwrBar;
+        return powerBar;
     }
 
     /**
@@ -100,8 +96,9 @@ public class Hand {
      *
      * @return returns the current handstrength
      */
-    public int getHandStrenght() {
-        handStrenght = calc.calcHandStrength();
-        return handStrenght;
+    public int getHandStrength() {
+        handStrength = handCalculation.calcHandStrength();
+
+        return handStrength;
     }
 }

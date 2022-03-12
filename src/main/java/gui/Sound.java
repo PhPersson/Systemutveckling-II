@@ -11,7 +11,6 @@ import javafx.scene.media.MediaPlayer;
  * @version 1.1
  */
 public class Sound {
-
     private static Media m = new Media(Sound.class.getResource("/sounds/cool_struttin'.mp3").toString());
     public static MediaPlayer mp = new MediaPlayer(m);
     public AudioClip checkSound = new AudioClip(Sound.class.getResource("/sounds/checkMeSound.m4a").toString());
@@ -24,33 +23,40 @@ public class Sound {
     public AudioClip wrongSound = new AudioClip(Sound.class.getResource("/sounds/buttonSoundWrong.mp3").toString());
     private boolean isPlaying;
 
-
     /**
      * Plays the AudioClip.
      *
      * @param type Name of sound that is being sent from the different classes that uses the audio objects.
      */
     public void playSound(String type) {
-        String whatSound = type;
-
-        if (whatSound.equals("check")) {
-            checkSound.play();
-        } else if (whatSound.equals("fold")) {
-            cardFold.play();
-        } else if (whatSound.equals("shuffle")) {
-            shuffleSound.play();
-        } else if (whatSound.equals("singleCard")) {
-            singleCard.play();
-        } else if (whatSound.equals("chipSingle")) {
-            chipSingle.play();
-        } else if (whatSound.equals("chipMulti")) {
-            chipMulti.play();
-        } else if (whatSound.equals("coinSound")) {
-            coinSound.play();
-        } else if (whatSound.equals("wrong")) {
-            wrongSound.play();
+        switch (type) {
+            case "check":
+                checkSound.play();
+                break;
+            case "fold":
+                cardFold.play();
+                break;
+            case "shuffle":
+                shuffleSound.play();
+                break;
+            case "singleCard":
+                singleCard.play();
+                break;
+            case "chipSingle":
+                chipSingle.play();
+                break;
+            case "chipMulti":
+                chipMulti.play();
+                break;
+            case "coinSound":
+                coinSound.play();
+                break;
+            case "wrong":
+                wrongSound.play();
+                break;
+            default:
+                break;
         }
-
     }
 
     /**

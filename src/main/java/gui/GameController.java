@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.*;
-import java.awt.font.ImageGraphicAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -952,7 +950,7 @@ public class GameController {
                 imgPowerBar.setY(0);
 
             }
-            this.handStrength = hand.getHandStrenght();
+            this.handStrength = hand.getHandStrength();
 
         });
 
@@ -1121,7 +1119,7 @@ public class GameController {
     public void setAiPlayers(LinkedList<Ai> aiPlayers, boolean notFirstRound, int deadAIIndex) {
 
         this.aiPlayers = aiPlayers;
-        int totalAI = spController.getFixedNrOfAIs();
+        int totalAI = spController.getFixedNumberOfAIs();
         if (!notFirstRound) {
             if (totalAI == 1) {
                 setShowUIAiBar(2);
@@ -1150,7 +1148,7 @@ public class GameController {
      */
     public void aiAction(int currentAI, String decision) {
 
-        int setAINr = spController.getFixedNrOfAIs();
+        int setAINr = spController.getFixedNumberOfAIs();
 
         int setOfPlayers = 0; // Is used for choosing the correct set of
         // positioning (see
@@ -1527,18 +1525,18 @@ public class GameController {
      * @param tablePot  the main tablePot
      */
     public void updatePots(int[][] potSplits, int tablePot) {
-
-        if (spController.getFixedNrOfAIs() == 5) {
+        if (spController.getFixedNumberOfAIs() == 5) {
             this.collectionOfPots =
                     new Label[]{subPotOne, subPotTwo, subPotThree, subPotFour, subPotFive, subPotSix};
-        } else if (spController.getFixedNrOfAIs() == 3) {
+        } else if (spController.getFixedNumberOfAIs() == 3) {
             this.collectionOfPots = new Label[]{subPotOne, subPotTwo, subPotThree, subPotFour};
-        } else if (spController.getFixedNrOfAIs() == 1) {
+        } else if (spController.getFixedNumberOfAIs() == 1) {
             this.collectionOfPots = new Label[]{subPotOne, subPotTwo};
         }
+
         Platform.runLater(() -> {
-            String[] potOrder = {"Sub-Pot One: ", "Sub-Pot Two: ", "Sub-Pot Three: ", "Sub-Pot Four: ",
-                    "Sub-Pot Five: ", "Sub-Pot Six: "};
+            String[] potOrder = {"Sub-Pot One: ", "Sub-Pot Two: ", "Sub-Pot Three: ", "Sub-Pot Four: ", "Sub-Pot Five: ", "Sub-Pot Six: "};
+
             for (int i = 0; i < collectionOfPots.length; i++) {
                 try {
                     if (potSplits[i][0] > 0) {
@@ -1549,10 +1547,7 @@ public class GameController {
                     } else {
                         collectionOfPots[i].setVisible(false);
                     }
-                } catch (Exception e) {
-
-                }
-
+                } catch (Exception e) {}
             }
             mainPot.setText("Table Pot: $" + tablePot);
             mainPot.setLayoutX(295.0);
@@ -1575,18 +1570,19 @@ public class GameController {
     public class AudioChecker implements Runnable {
         private Thread thread = null;
         private Sound sound;
-        private GameController gcontroller;
+        private GameController gameController;
 
         public AudioChecker(Sound sound, GameController gcontroller) {
             this.sound = sound;
-            this.gcontroller = gcontroller;
+            this.gameController = gcontroller;
         }
 
         public void checkAudio() throws InterruptedException {
             while (true) {
                 double audio = Double.parseDouble(readFile());
+
                 if (audio > 0.0) {
-                    gcontroller.changeSoundIcon(false);
+                    gameController.changeSoundIcon(false);
                     sound.cardFold.setVolume(1);
                     sound.checkSound.setVolume(1);
                     sound.chipMulti.setVolume(1);
@@ -1597,7 +1593,7 @@ public class GameController {
                     sound.coinSound.setVolume(1);
                     sound.wrongSound.setVolume(1);
                 } else {
-                    gcontroller.changeSoundIcon(true);
+                    gameController.changeSoundIcon(true);
                     sound.cardFold.setVolume(0);
                     sound.checkSound.setVolume(0);
                     sound.chipMulti.setVolume(0);
@@ -1608,23 +1604,28 @@ public class GameController {
                     sound.coinSound.setVolume(0);
                     sound.wrongSound.setVolume(0);
                 }
+
                 Thread.sleep(1000);
             }
         }
 
         public String readFile() {
             String data = "";
+
             try {
                 File myObj = new File("resources/sounds/volume.txt");
                 Scanner myReader = new Scanner(myObj);
+
                 while (myReader.hasNextLine()) {
                     data = myReader.nextLine();
                 }
+
                 myReader.close();
             } catch (FileNotFoundException e) {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
+
             return data;
         }
 

@@ -19,7 +19,7 @@ public enum Suit {
      *
      * @param firstLetter h, s, c or d
      */
-    private Suit(char firstLetter) {
+    Suit(char firstLetter) {
         this.suit = firstLetter;
     }
 

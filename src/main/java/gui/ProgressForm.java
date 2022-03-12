@@ -19,8 +19,8 @@ import javafx.stage.StageStyle;
  */
 public class ProgressForm {
     private final Stage dialogStage;
-    private final ProgressBar pb = new ProgressBar();
-    private final ProgressIndicator pin = new ProgressIndicator();
+    private final ProgressBar progressBar = new ProgressBar();
+    private final ProgressIndicator progressIndicator = new ProgressIndicator();
 
     public ProgressForm() {
         dialogStage = new Stage();
@@ -32,14 +32,14 @@ public class ProgressForm {
         final Label label = new Label();
         label.setText("Loading...");
 
-        pb.setProgress(-1F);
-        pin.setProgress(-1F);
+        progressBar.setProgress(-1F);
+        progressIndicator.setProgress(-1F);
 
         final HBox hb = new HBox();
         hb.setSpacing(5);
         hb.setAlignment(Pos.CENTER);
         hb.getChildren().add(label);
-        hb.getChildren().addAll(pb, pin);
+        hb.getChildren().addAll(progressBar, progressIndicator);
 
         Scene scene = new Scene(hb);
         dialogStage.setScene(scene);
@@ -51,8 +51,8 @@ public class ProgressForm {
      * @param task
      */
     public void activateProgressBar(final Task<?> task) {
-        pb.progressProperty().bind(task.progressProperty());
-        pin.progressProperty().bind(task.progressProperty());
+        progressBar.progressProperty().bind(task.progressProperty());
+        progressIndicator.progressProperty().bind(task.progressProperty());
         dialogStage.show();
     }
 

@@ -32,7 +32,7 @@ public class AiCalculation {
 		checkPairAndMore();
 		checkStraight();
 		System.out.println(aiCards);
-		System.out.println(calcHandstrenght());
+		System.out.println(calcHandStrength());
 	}
 	
 	/**

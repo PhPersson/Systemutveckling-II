@@ -21,7 +21,6 @@ import javafx.stage.Stage;
  * version 1.0
  */
 public class WinnerBox {
-
     private boolean answer = false;
     public Stage window = new Stage();
     public Font font = new Font("Tw Cen MT", 18);
@@ -39,12 +38,10 @@ public class WinnerBox {
      * @return answer Boolean that returns an answer.
      */
     public boolean displayWinner(String title, String message, int nr, String handStrength) {
-
-        String aiWin = new String("Rundan vanns av " + message + " som hade " + handStrength);
-        String playerWin = new String("Grattis " + message + ", du vann den här rundan! Du vann med " + handStrength);
-        String playerWinAIFold = new String("Grattis " + message + ". " + handStrength);
-        String aiWinOthersFold = new String("Rundan vanns av " + message + " " + handStrength);
-        String playerLose = new String(message);
+        String aiWin = "Rundan vanns av " + message + " som hade " + handStrength;
+        String playerWin = "Grattis " + message + ", du vann den här rundan! Du vann med " + handStrength;
+        String playerWinAIFold = "Grattis " + message + ". " + handStrength;
+        String aiWinOthersFold = "Rundan vanns av " + message + " " + handStrength;
 
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
@@ -68,7 +65,7 @@ public class WinnerBox {
         } else if (nr == 4) {
             messageText.setText(aiWinOthersFold);
         } else if (nr == 5) {
-            messageText.setText(playerLose);
+            messageText.setText(message);
         }
 
         btnOk.setOnMouseReleased(e -> {
@@ -86,14 +83,12 @@ public class WinnerBox {
         btnOk.setLayoutX(175);
         btnOk.setLayoutY(110);
 
-
         pane.getChildren().addAll(back, messageText, btnOk);
 
         Scene scene = new Scene(pane);
         window.setScene(scene);
         window.showAndWait();
         return answer;
-
     }
 
     /**

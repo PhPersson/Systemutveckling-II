@@ -44,7 +44,7 @@ public class AiDecide {
         highCards = calculation.checkHighCards();
         colorChance = calculation.checkSuit();
         straightChance = calculation.checkStraight();
-        handStrength = calculation.calcHandstrenght();
+        handStrength = calculation.calcHandStrength();
         turn = aiCards.size() - 1;
 
 

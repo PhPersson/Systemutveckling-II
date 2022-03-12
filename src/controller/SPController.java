@@ -293,7 +293,7 @@ public class SPController extends Thread {
         // move on to the next player
         currentPlayer = (currentPlayer + 1) % noOfPlayers;
         // check if everyone has checked, called or folded.
-        allCallorFold();
+        allCallOrFold();
       }
       // Next turn
       playTurn++;
@@ -594,7 +594,7 @@ public class SPController extends Thread {
       gController.askForPlayerDecision();
       playerAction();
     } else {
-      allCallorFold();
+      allCallOrFold();
     }
   }
 
@@ -661,7 +661,7 @@ public class SPController extends Thread {
       }
     }
     // Check all call or fold
-    allCallorFold();
+    allCallOrFold();
   }
 
 
@@ -689,7 +689,7 @@ public class SPController extends Thread {
       aiAction(currentPlayer);
     }
     // Check all call or fold
-    allCallorFold();
+    allCallOrFold();
   }
 
 

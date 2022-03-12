@@ -17,29 +17,38 @@ import java.util.Optional;
 
 public class Main extends Application {
     public static Stage window;
-    public ChangeScene cs = new ChangeScene();
+    public ChangeScene changeScene = new ChangeScene();
 
     /**
      * The applications calls start(Stage primaryStage) after launch has been
      * executed.
      */
     public void start(Stage primaryStage) throws Exception {
-        cs.prepGame();
+        changeScene.prepGame();
 
         window = primaryStage;
         window.setTitle("TeachMePoker");
         window.setResizable(true);
 
-        /**
-         * Closes the window and exits the program.
-         */
+        exitConfirmation(primaryStage);
+
+        window.setScene(changeScene.firstScene());
+        window.show();
+    }
+
+    /**
+     * Adds a confirmation window when exiting the program.
+     *
+     * @param primaryStage
+     */
+    private void exitConfirmation(Stage primaryStage) {
         primaryStage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Exit program");
             alert.setHeaderText("Exit?");
             Optional<ButtonType> result = alert.showAndWait();
 
-            if(result.isPresent() && result.get() != ButtonType.OK){
+            if (result.isPresent() && result.get() != ButtonType.OK) {
                 event.consume();
                 return;
             }
@@ -47,9 +56,6 @@ public class Main extends Application {
             Platform.exit();
             System.exit(0);
         });
-
-        window.setScene(cs.firstScene());
-        window.show();
     }
 
     /**

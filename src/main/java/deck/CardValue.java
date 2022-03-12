@@ -28,7 +28,7 @@ public enum CardValue {
      *
      * @param value an int between 2-14
      */
-    private CardValue(int value) {
+    CardValue(int value) {
         this.cardValue = value;
     }
 
