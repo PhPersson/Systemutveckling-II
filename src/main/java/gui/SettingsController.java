@@ -202,7 +202,7 @@ public class SettingsController {
             pForm.getDialogStage().close();
 
             try {
-                changeScene.switchScenetoGame();
+                changeScene.switchSceneToGame();
                 ConfirmBox cfBox = new ConfirmBox();
 
                 if (cfBox.display("Snart börjar spelet", "Är du redo att spela poker?")) {
