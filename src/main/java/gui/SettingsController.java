@@ -195,7 +195,6 @@ public class SettingsController {
         thread.start();
         // binds progress of progress bars to progress of task:
         pForm.activateProgressBar(task);
-
         // in real life this method would get the result of the task
         // and update the UI based on its value:
         task.setOnSucceeded(event -> {
