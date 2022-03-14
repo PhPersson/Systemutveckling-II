@@ -17,17 +17,16 @@ import deck.Card;
 import hand.Hand;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.tools.Tool;
 
 /**
  * @author Amin Harirchian, Vedrana Zeba, Lykke Levin, Rikard Almgren
@@ -210,7 +209,6 @@ public class GameController {
 
     /**
      * Method for initializing FXML
-     *
      */
     public void initialize() {
         // Groups together labels for each AI-position.
@@ -237,12 +235,24 @@ public class GameController {
         // Used by method: inactivateAllAiCardGlows and aiAction.
         this.prevPlayerActive = -1;
 
+        addTooltips();
+
         this.ivSoundOff.setVisible(false);
         this.ivSoundOff.setDisable(true);
         ac = new AudioChecker(sound, this);
         ac.start();
     }
 
+
+    /**
+     * Adds tooltips to UI-elements.
+     */
+    private void addTooltips() {
+        Tooltip.install(btCall, new Tooltip("Du stannar kvar i rundan genom att satsa lika mycket som den som tidigare satsat mest denna rundan."));
+        Tooltip.install(btRaise, new Tooltip("Du stannar kvar i rundan genom att höja."));
+        Tooltip.install(btFold, new Tooltip("Du ger upp denna rundan."));
+        Tooltip.install(btCheck, new Tooltip("Du stannar kvar i rundan men lägger inte in något."));
+    }
 
     /**
      * Used to show labels and AI-frame.
@@ -393,7 +403,8 @@ public class GameController {
         disableButtons();
 
         //If the player hasn't matched the current maxbet
-        if (spController.getCurrentMaxBet() != alreadyPaid) {}
+        if (spController.getCurrentMaxBet() != alreadyPaid) {
+        }
         int raisedBet = (int) (slider.getValue());
         this.playerPot -= raisedBet;
         //(raised amount + the amount the player has to match(if the player has to match)) = THE PLAYER'S POT
@@ -846,17 +857,17 @@ public class GameController {
     }
 
     /**
-     * Powertbar setup.
+     * Powerbar setup.
      *
-     * @param powerBarType Image to display.
-     * @param width Width of the powerbar.
-     * @param heigth Heigth of the powerbar.
+     * @param powerBarType  Image to display.
+     * @param width         Width of the powerbar.
+     * @param heigth        Heigth of the powerbar.
      * @param preserveRatio
      * @param smooth
-     * @param x X-coordinate of powerbar.
-     * @param y Y-coordinate of powerbar.
+     * @param x             X-coordinate of powerbar.
+     * @param y             Y-coordinate of powerbar.
      */
-    private void powerBarSetup(String powerBarType, double width, double heigth, boolean preserveRatio, boolean smooth, int x, int y){
+    private void powerBarSetup(String powerBarType, double width, double heigth, boolean preserveRatio, boolean smooth, int x, int y) {
         powerBarArea.getChildren().remove(imgPowerBar);
         image = new Image(Paths.get(powerBarType).toUri().toString(), width, heigth, preserveRatio, smooth);
         imgPowerBar = new ImageView(image);
@@ -882,7 +893,7 @@ public class GameController {
      */
     public String askForPlayerDecision() {
         handleButtons();
-        
+
         try {
             BufferedImage image = ImageIO.read(new File("resources/images/yourTurnText.png"));
             JLabel picLabel = new JLabel(new ImageIcon(image));
@@ -1164,7 +1175,7 @@ public class GameController {
     public void aboutBox() {
         confirmBox = new ConfirmBox();
         confirmBox.display("Om projektet", "Detta projekt är format och skapat av Vedrana Zeba, Rikard Almgren, Amin Harirchian, " +
-                        "Max Frennessen och Lykke Levin under vårterminen 2017 som en del av kursen Systemutveckling och projekt 1.");
+                "Max Frennessen och Lykke Levin under vårterminen 2017 som en del av kursen Systemutveckling och projekt 1.");
     }
 
 
@@ -1180,7 +1191,6 @@ public class GameController {
 
     /**
      * Method which creates a popup to inform the player that s/he lost.
-     *
      */
     public void playerLost() {
         Platform.runLater(() -> {
@@ -1319,30 +1329,33 @@ public class GameController {
                 winnerBox = new WinnerBox();
                 winnerBox.displayWinner("Rundans vinnare", winner, 2, winnerHand);
             });
+
         } else if (winner.equals(getUsername()) && (hand < 10)) {
             Platform.runLater(() -> {
                 sound.playSound("coinSound");
                 winnerBox = new WinnerBox();
                 winnerBox.displayWinner("Rundans vinnare", winner, 1, winnerHand);
             });
+
         } else if (winner.equals(getUsername()) && (hand > 10)) {
             Platform.runLater(() -> {
                 sound.playSound("coinSound");
                 winnerBox = new WinnerBox();
                 winnerBox.displayWinner("Rundans vinnare", winner, 3, winnerHand);
             });
+
         } else if (!winner.equals(getUsername()) && (hand > 10)) {
             Platform.runLater(() -> {
                 winnerBox = new WinnerBox();
                 winnerBox.displayWinner("Rundans vinnare", winner, 4, winnerHand);
             });
+
         }
     }
 
 
     /**
      * Method which creates a new tutorial and shows it.
-     *
      */
     public void goToTutorial() {
         Platform.runLater(() -> {
@@ -1407,7 +1420,8 @@ public class GameController {
                     } else {
                         collectionOfPots[i].setVisible(false);
                     }
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
 
             mainPot.setText("Table Pot: $" + tablePot);
