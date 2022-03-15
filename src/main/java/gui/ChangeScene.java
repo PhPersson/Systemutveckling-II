@@ -31,6 +31,7 @@ public class ChangeScene {
      * @throws IllegalAccessException
      */
     public void prepGame() throws IOException, InstantiationException, IllegalAccessException {
+
         Sound.class.newInstance().playBackgroundMusic();
         FXMLLoader loaderFirstMenu = new FXMLLoader(FirstMenuController.class.getResource("/FirstMenu.fxml"));
         this.rootMenu = loaderFirstMenu.load();
@@ -65,6 +66,7 @@ public class ChangeScene {
      */
     public void switchSceneToGame() throws IOException {
         Main.window.getScene().setRoot(root2);
+
         gameController.setUsername(settingsController.getName());
         Sound.mp.setVolume(0.3);
     }
@@ -89,6 +91,7 @@ public class ChangeScene {
             throws IOException, InstantiationException, IllegalAccessException {
         prepGame();
         Main.window.setScene(bestScene);
+        Main.window.setResizable(false);
     }
 
     /**
