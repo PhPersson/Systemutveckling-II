@@ -48,6 +48,21 @@ public class HandCalculation {
         Help();
     }
 
+    public ArrayList<Integer> getCardNbr() {
+        return cardNumber;
+    }
+
+    public ArrayList<String> getCardClr() {
+        return cardColor;
+    }
+
+    int getStraightChance(){
+        return straightChance;
+    }
+
+    boolean getRlyHighCards() {
+        return rlyHighCards;
+    }
 
     /**
      * converts the cards value into two diffirent arraylists.
