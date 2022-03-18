@@ -43,16 +43,20 @@ public class SPController extends Thread {
         setNames();
         numberOfPlayers = numberOfAi + 1;
         bigBlind = (int) (potSize / numberOfPlayers * 0.02); // Calculates bigBlind
+
         if (bigBlind < 2) {
             bigBlind = 2;
         }
+
         currentMaxBet = bigBlind;
         this.smallBlind = bigBlind / 2;
         gameController.setPlayerPot((potSize / numberOfPlayers));
+
         // create aiPlayers
         for (int i = 0; i < numberOfAi; i++) {
             aiPlayers.add(new Ai(potSize / (numberOfPlayers), name.remove(0)));
         }
+
         gameController.setAiPlayers(aiPlayers, false, 69);
         potSplits = new int[numberOfPlayers][1];
 
@@ -134,29 +138,17 @@ public class SPController extends Thread {
             potSplits = new int[numberOfPlayers][1];
             gameController.updatePots(potSplits, currentPotSize);
             gameController.playerReset("");
-            /*
-             * Reset the AI players unless they've lost
-             */
-            for (Ai ai : aiPlayers) {
-                ai.setBigBlind(0, false);
-                ai.setSmallBlind(0, false);
-                ai.setPaidThisTurn(0);
-                ai.setAllInViability(99);
-                if (!ai.getDecision().contains("lost")) {
-                    ai.setDecision("");
-                    card1 = deck.getCard();
-                    card2 = deck.getCard();
-                    ai.setStartingHand(card1, card2);
-                }
-            }
-            // set the blinds
+
+            resetAiPlayers();
             setBlinds(numberOfPlayers);
+
             // Generate a flop, turn and river.
             for (int i = 0; i < flop.length; i++) {
                 flop[i] = deck.getCard();
             }
             turn = deck.getCard();
             river = deck.getCard();
+
             // If thread isn't active, start, else run it again.
             if (!this.isAlive()) {
                 start();
@@ -169,6 +161,24 @@ public class SPController extends Thread {
         }
     }
 
+    /**
+     * Resets ai players unless they've lost.
+     */
+    private void resetAiPlayers(){
+        for (Ai ai : aiPlayers) {
+            ai.setBigBlind(0, false);
+            ai.setSmallBlind(0, false);
+            ai.setPaidThisTurn(0);
+            ai.setAllInViability(99);
+
+            if (!ai.getDecision().contains("lost")) {
+                ai.setDecision("");
+                card1 = deck.getCard();
+                card2 = deck.getCard();
+                ai.setStartingHand(card1, card2);
+            }
+        }
+    }
 
     /**
      * Method that runs the gameround itself
@@ -186,24 +196,29 @@ public class SPController extends Thread {
             // set dealer, smallblind and bigBlind.
             if (playTurn == 0) {
                 int playerNr = numberOfPlayers - 1;
+
                 if (playerNr != 1) {
                     try {
                         if (dealer != playerNr) {
                             Thread.sleep(1000);
                             gameController.aiAction(dealer, "Dealer");
                         }
+
                         if (smallBlindPlayer != playerNr) {
                             Thread.sleep(1000);
                             gameController.aiAction(smallBlindPlayer, "SmallBlind");
                         }
+
                         if (bigBlindPlayer != playerNr) {
                             Thread.sleep(1000);
                             gameController.aiAction(bigBlindPlayer, "BigBlind");
                         }
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
             } else if (playTurn == 1) {
                 gameController.setFlopTurnRiver(flop);
             } else if (playTurn == 2) {
@@ -215,8 +230,7 @@ public class SPController extends Thread {
             while (!allCalledOrFolded) {
                 // Check if its the players turn.
                 if (currentPlayer == numberOfPlayers - 1) {
-                    if (!gameController.getPlayerDecision().equals("fold")
-                            && !gameController.getPlayerDecision().contains("allin")) {
+                    if (!gameController.getPlayerDecision().equals("fold") && !gameController.getPlayerDecision().contains("allin")) {
                         if (!(checkLivePlayers() > 1)) {
                             gameController.setPlayerPot(currentPotSize);
                             winner = gameController.getUsername();
@@ -224,11 +238,13 @@ public class SPController extends Thread {
                             winnerDeclared = true;
                             break;
                         }
+
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+
                         askForPlayerDecision(currentMaxBet);
                     }
                     // if it isn't the players turn, let the AI do their turn
@@ -253,7 +269,6 @@ public class SPController extends Thread {
                         }
                     }
                 }
-
 
                 // After each player(AI or real), update the pot(s)
                 gameController.updatePots(potSplits, currentPotSize);
@@ -312,9 +327,7 @@ public class SPController extends Thread {
 
         try {
             setupPhase();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
 

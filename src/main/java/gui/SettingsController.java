@@ -195,14 +195,13 @@ public class SettingsController {
         thread.start();
         // binds progress of progress bars to progress of task:
         pForm.activateProgressBar(task);
-
         // in real life this method would get the result of the task
         // and update the UI based on its value:
         task.setOnSucceeded(event -> {
             pForm.getDialogStage().close();
 
             try {
-                changeScene.switchScenetoGame();
+                changeScene.switchSceneToGame();
                 ConfirmBox cfBox = new ConfirmBox();
 
                 if (cfBox.display("Snart börjar spelet", "Är du redo att spela poker?")) {

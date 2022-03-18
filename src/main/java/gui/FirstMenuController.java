@@ -15,7 +15,7 @@ import java.io.FileWriter;
  * @version 1.0
  */
 
-public class FMController {
+public class FirstMenuController {
     private ChangeScene changeScene;
     private Sound sound;
     @FXML

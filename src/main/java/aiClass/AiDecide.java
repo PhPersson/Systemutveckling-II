@@ -37,6 +37,7 @@ public class AiDecide {
         if (toBet != 0) {
             this.toBet = this.toBet - alreadyPaid;
         }
+
         this.raiseBet = toBet;
         this.raiseAmount = (int) (1.25 * raiseBet);
 
@@ -63,11 +64,12 @@ public class AiDecide {
      * Decides a decision for the first turn of a new round.
      */
     public void turnOne() {
-
         boolean check = false;
+
         if (toBet == 0) {
             check = true;
         }
+
         if (straightChance == 2) {
             likelyhood += 25;
         }
@@ -109,7 +111,6 @@ public class AiDecide {
         }
 
         if (handStrength == 1) {
-
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
                 howMuchToTakeAwayFromAiPot = raiseAmount - alreadyPaid;
@@ -124,6 +125,7 @@ public class AiDecide {
             }
 
         }
+
         aiPot -= howMuchToTakeAwayFromAiPot;
     }
 
@@ -131,17 +133,19 @@ public class AiDecide {
      * Decides a decision for the second turn of a new round.
      */
     public void turnTwo() {
-
         boolean check = false;
+
         if (toBet == 0) {
             check = true;
         }
+
         if (straightChance >= 3) {
             likelyhood += 25;
         }
 
         if (highCards) {
             likelyhood += 20;
+
             if (rlyhighCards) {
                 likelyhood += 15;
             }
@@ -161,7 +165,6 @@ public class AiDecide {
             likelyhood -= 20;
         }
 
-
         Random rand = new Random();
         int roll = rand.nextInt(100);
 
@@ -178,7 +181,6 @@ public class AiDecide {
         }
 
         if (handStrength >= 1) {
-
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
                 howMuchToTakeAwayFromAiPot = raiseAmount - alreadyPaid;
@@ -191,8 +193,8 @@ public class AiDecide {
                 toDo = "all-in," + aiPot;
                 howMuchToTakeAwayFromAiPot = aiPot;
             }
-
         }
+
         aiPot -= howMuchToTakeAwayFromAiPot;
     }
 
@@ -200,17 +202,19 @@ public class AiDecide {
      * Decides a decision for the third turn of a new round.
      */
     public void turnThree() {
-
         boolean check = false;
+
         if (toBet == 0) {
             check = true;
         }
+
         if (straightChance >= 4) {
             likelyhood += 25;
         }
 
         if (highCards) {
             likelyhood += 20;
+
             if (rlyhighCards) {
                 likelyhood += 15;
             }
@@ -247,7 +251,6 @@ public class AiDecide {
         }
 
         if (handStrength > 1) {
-
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
                 howMuchToTakeAwayFromAiPot = raiseAmount - alreadyPaid;
@@ -260,24 +263,24 @@ public class AiDecide {
                 toDo = "all-in," + aiPot;
                 howMuchToTakeAwayFromAiPot = aiPot;
             }
-
         }
-        aiPot -= howMuchToTakeAwayFromAiPot;
 
+        aiPot -= howMuchToTakeAwayFromAiPot;
     }
 
     /**
      * Decides a decision for the last turn of a new round.
      */
     public void turnFour() {
-
         boolean check = false;
+
         if (toBet == 0) {
             check = true;
         }
 
         if (highCards) {
             likelyhood += 20;
+
             if (rlyhighCards) {
                 likelyhood += 15;
             }
@@ -309,7 +312,6 @@ public class AiDecide {
         }
 
         if (handStrength > 1) {
-
             if (raiseAmount < aiPot && !(sameTurn)) {
                 toDo = "raise," + raiseAmount;
                 howMuchToTakeAwayFromAiPot = raiseAmount - alreadyPaid;
@@ -322,10 +324,9 @@ public class AiDecide {
                 toDo = "all-in," + aiPot;
                 howMuchToTakeAwayFromAiPot = aiPot;
             }
-
         }
-        aiPot -= howMuchToTakeAwayFromAiPot;
 
+        aiPot -= howMuchToTakeAwayFromAiPot;
     }
 
 
@@ -337,7 +338,6 @@ public class AiDecide {
      * @return returns the ai-players handStrenght
      */
     public int gethandStrength() {
-
         return handStrength;
     }
 
@@ -347,7 +347,6 @@ public class AiDecide {
      * @return returns a updated version of the ai-players pot after this turn.
      */
     public int updateAiPot() {
-
         return aiPot;
     }
 
@@ -357,7 +356,6 @@ public class AiDecide {
      * @return Returns what the ai-players is going to do this turn.
      */
     public String decision() {
-
         return toDo;
     }
 }

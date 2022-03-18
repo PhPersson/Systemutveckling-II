@@ -120,7 +120,7 @@
 									<font>
 										<Font name="Tw Cen MT" size="15.0" fx:id="x1" />
 									</font>
-								
+
 								</Label>
 								<Label id="adviseLabel" fx:id="adviceLabel" layoutX="-50.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="318.0" rotate="90.0" text="" wrapText="true">
 									<font>
@@ -195,7 +195,7 @@
 				</Pane>
 <!--             <Pane fx:id="paneRounds" layoutX="10.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-      
+
       				<ImageView id="gameRound.png" fx:id="imgRoundStatus" fitHeight="56.0" fitWidth="175.0" visible="true">
       					<image>
       						<Image url="@images/roundPreFlop.png" />
@@ -218,9 +218,9 @@
             	            	               <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
-            	
-            	
-            	
+
+
+
 				<Label fx:id="labelPlayerThreeName" alignment="TOP_CENTER" font="$x3" layoutX="653.0" layoutY="109.0" text="PlayerThreeName" visible="false" />
 				<Label fx:id="labelPlayerFourName" font="$x3" layoutX="1005.0" layoutY="119.0" text="PlayerFourName" visible="false" />
 				<Label fx:id="labelPlayerFiveName" font="$x3" layoutX="1118.0" layoutY="364.0" text="PlayerFiveName" visible="false" />
@@ -262,9 +262,9 @@
 
 				<Label fx:id="lbAllIn" disable="false" focusTraversable="false" font="$x3" labelFor="$slider" layoutX="870.0" layoutY="650.0" prefHeight="28.0" prefWidth="49.0" text="ALL IN" textFill="WHITE" visible="false" />
 				<Pane fx:id="tabelCardArea" layoutX="435.0" layoutY="231.0" prefHeight="164.0" prefWidth="471.0" />
-				<!-- <ImageView id="img1Table.png" fx:id="imgCard1" fitHeight="166.0" 
-					fitWidth="120.0" layoutX="0.0" layoutY="0.0" visible="false"> </ImageView> 
-      					<ImageView id="img2Table.png" fx:id="imgCard2" fitHeight="166.0" fitWidth="120.0" 
+				<!-- <ImageView id="img1Table.png" fx:id="imgCard1" fitHeight="166.0"
+					fitWidth="120.0" layoutX="0.0" layoutY="0.0" visible="false"> </ImageView>
+      					<ImageView id="img2Table.png" fx:id="imgCard2" fitHeight="166.0" fitWidth="120.0"
       					layoutX="0.0" layoutY="0.0" visible="false"> </ImageView> -->
 				<ImageView id="img3Table.png" fx:id="imgCard3" fitHeight="166.0" fitWidth="120.0" layoutX="105" layoutY="0.0" visible="true">
 				</ImageView>
@@ -301,10 +301,10 @@
 					</content>
 					<font>
 						<Font name="Tw Cen MT" size="18.0" />
-						
+
 					</font>
 				</TitledPane>
-          
+
 
 			</children>
 		</AnchorPane>

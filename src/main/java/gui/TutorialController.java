@@ -72,6 +72,7 @@ public class TutorialController {
         }
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Tutorial");
+        window.setResizable(false);
         window.setWidth(1285);
         window.setHeight(730);
         this.tutorialPane = FXMLLoader.load(RuleController.class.getResource("/Tutorial.fxml"));

@@ -28,7 +28,7 @@ public class Main extends Application {
 
         window = primaryStage;
         window.setTitle("TeachMePoker");
-        window.setResizable(true);
+        window.setResizable(false);
 
         exitConfirmation(primaryStage);
 

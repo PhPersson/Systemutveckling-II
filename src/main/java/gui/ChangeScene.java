@@ -14,13 +14,12 @@ import javafx.scene.layout.Pane;
  * @author Lykke Levin & Rikard Almgren
  * @version 1.0
  */
-
 public class ChangeScene {
     Pane rootMenu;
     Pane rootNewGame;
     Pane root2;
     Scene bestScene;
-    private FMController fmController;
+    private FirstMenuController firstMenuController;
     private SettingsController settingsController;
     private GameController gameController;
 
@@ -32,32 +31,31 @@ public class ChangeScene {
      * @throws IllegalAccessException
      */
     public void prepGame() throws IOException, InstantiationException, IllegalAccessException {
-        Sound.class.newInstance().playBackgroundMusic();
-        FXMLLoader loaderFM = new FXMLLoader(FMController.class.getResource("/FirstMenu.fxml"));
-        this.rootMenu = loaderFM.load();
-        this.fmController = loaderFM.getController();
-        FXMLLoader loaderSS =
-                new FXMLLoader(SettingsController.class.getResource("/GameSettingMenu.fxml"));
-        this.rootNewGame = loaderSS.load();
-        this.settingsController = loaderSS.getController();
 
-        FXMLLoader loaderGS = new FXMLLoader(GameController.class.getResource("/GameState.fxml"));
-        this.root2 = loaderGS.load();
-        this.gameController = loaderGS.getController();
+        Sound.class.newInstance().playBackgroundMusic();
+        FXMLLoader loaderFirstMenu = new FXMLLoader(FirstMenuController.class.getResource("/FirstMenu.fxml"));
+        this.rootMenu = loaderFirstMenu.load();
+        this.firstMenuController = loaderFirstMenu.getController();
+        FXMLLoader loaderGameSettingMenu =
+                new FXMLLoader(SettingsController.class.getResource("/GameSettingMenu.fxml"));
+        this.rootNewGame = loaderGameSettingMenu.load();
+        this.settingsController = loaderGameSettingMenu.getController();
+
+        FXMLLoader loaderGameState = new FXMLLoader(GameController.class.getResource("/GameState.fxml"));
+        this.root2 = loaderGameState.load();
+        this.gameController = loaderGameState.getController();
 
         this.bestScene = new Scene(rootMenu);
 
         gameController.setChangeScene(this);
         settingsController.setChangeScene(this);
-        fmController.setChangeScene(this);
+        firstMenuController.setChangeScene(this);
     }
 
     /**
      * Method which switches the scene to the settings menu.
-     *
-     * @throws IOException
      */
-    public void switchSceneToSetting() throws IOException {
+    public void switchSceneToSetting() {
         Main.window.getScene().setRoot(rootNewGame);
     }
 
@@ -66,8 +64,9 @@ public class ChangeScene {
      *
      * @throws IOException
      */
-    public void switchScenetoGame() throws IOException {
+    public void switchSceneToGame() throws IOException {
         Main.window.getScene().setRoot(root2);
+
         gameController.setUsername(settingsController.getName());
         Sound.mp.setVolume(0.3);
     }
@@ -92,6 +91,7 @@ public class ChangeScene {
             throws IOException, InstantiationException, IllegalAccessException {
         prepGame();
         Main.window.setScene(bestScene);
+        Main.window.setResizable(false);
     }
 
     /**
