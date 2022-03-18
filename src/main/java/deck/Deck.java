@@ -71,4 +71,8 @@ public class Deck {
             }
         }
     }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
 }

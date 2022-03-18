@@ -2,6 +2,8 @@ package aiClass;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AiDecideTest {
@@ -24,6 +26,9 @@ class AiDecideTest {
 
     @Test
     void gethandStrength() {
+        ArrayList<String> aiCards = new ArrayList<String>();
+        AiDecide ai = new AiDecide(aiCards, 500, 200, 100, true);
+        ai.gethandStrength();
     }
 
     @Test
