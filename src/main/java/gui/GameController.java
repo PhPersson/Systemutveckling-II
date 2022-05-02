@@ -1199,7 +1199,7 @@ public class GameController {
     } else if (decision.contains("check")) {
       actionText = "Check";
     } else if (decision.contains("call")) {
-      actionText = "Call";
+      actionText = "Call $ " + (int) slider.getValue();
     } else if (decision.contains("raise")) {
       String[] decisionAi = decision.split(",");
       actionText = "Raise, $" + decisionAi[1];

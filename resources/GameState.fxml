@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
 	<children>
 		<AnchorPane id="AnchorPaneAll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0">
 			<children>
@@ -45,7 +31,7 @@
 						<Image url="@images/soundButton.png" />
 					</image>
 				</ImageView>
-				<ImageView id="soundButtonOff.png" fx:id="ivSoundOff" pickOnBounds="true" fitHeight="45.0" fitWidth="45.0" layoutX="1220.0" layoutY="40.0" onMouseReleased="#soundSetting">
+				<ImageView id="soundButtonOff.png" fx:id="ivSoundOff" fitHeight="45.0" fitWidth="45.0" layoutX="1220.0" layoutY="40.0" onMouseReleased="#soundSetting" pickOnBounds="true">
 					<image>
 						<Image url="@images/soundButtonOff.png" />
 					</image>
@@ -109,6 +95,7 @@
 				<TitledPane id="helpBox" alignment="TOP_CENTER" contentDisplay="LEFT" graphicTextGap="1.0" layoutX="114.0" layoutY="388.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="444.0" prefWidth="217.0" rotate="270.0" text="Hjälp">
 					<content>
 						<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="180.0">
+
 							<children>
 								<Label fx:id="helpLabel" layoutX="40.0" layoutY="139.0" prefHeight="37.0" prefWidth="302.0" rotate="90.0" text="">
 																		<font>
@@ -122,11 +109,14 @@
 									</font>
 								
 								</Label>
+
 								<Label id="adviseLabel" fx:id="adviceLabel" layoutX="-50.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="318.0" rotate="90.0" text="" wrapText="true">
 									<font>
 										<Font name="Tw Cen MT" size="15.0" />
 									</font>
+
 								</Label>
+
 								<Pane id="powerBar" fx:id="powerBarArea" layoutX="53.0" layoutY="259.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="108.0" rotate="90.0">
 									<opaqueInsets>
 										<Insets />

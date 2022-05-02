@@ -13,6 +13,11 @@ public class Card {
 	private CardValue cardValue;
 	private Icon cardIcon;
 
+
+	public Card(){
+
+	}
+
 	/**
 	 * Creates a Card with a suit, value and picture 
 	 * @param suit "Hearts", "Diamonds", "Clubs", "Spades"
@@ -24,6 +29,11 @@ public class Card {
 		this.cardValue = value;
 		this.cardIcon = cardIcon;
 	}
+
+	public void setCardValue(CardValue cardValue) {
+		this.cardValue = cardValue;
+	}
+
 	/**
 	 * Returns the value of the card. 
 	 * @return cardValue

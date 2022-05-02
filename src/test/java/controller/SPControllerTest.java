@@ -16,6 +16,9 @@ class SPControllerTest {
 
     @Test
     void getCurrentMaxBet() {
+        SPController controller = new SPController();
+
+        assertEquals(1000, controller.getCurrentMaxBet());
     }
 
     @Test

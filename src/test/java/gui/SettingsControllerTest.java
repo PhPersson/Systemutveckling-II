@@ -60,5 +60,10 @@ class SettingsControllerTest {
 
     @Test
     void getName() {
+        com.sun.javafx.application.PlatformImpl.startup(()->{});
+        SettingsController settingsController = new SettingsController();
+
+        settingsController.setName("Testnamn");
+        assertEquals("Testnamn", settingsController.getName());
     }
 }

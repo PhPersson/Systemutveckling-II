@@ -283,6 +283,12 @@ public class SettingsController {
 	public String getName() {
 		return name;
 	}
+
+	public String setName(String nameToSet) {
+		name = nameToSet;
+		return name;
+	}
+
 	public void pauseMusic() {
 		sound.pauseMusic();
 		ivSoundSettingOff.setVisible(true);
